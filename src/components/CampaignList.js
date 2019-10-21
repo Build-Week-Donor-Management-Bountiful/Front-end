@@ -23,7 +23,7 @@ const CampaignList = props => {
 
     return (
         <div className="campaigns">
-            {props.campaigns.map( campaign => <Campaign id={} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
+            {props.campaigns.map( campaign => <Campaign id={props.id} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
         </div>
     )
 }
