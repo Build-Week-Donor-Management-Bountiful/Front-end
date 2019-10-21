@@ -18,7 +18,7 @@ const CampaignList = props => {
     * Component that displays all the campaigns for user's organization:
     * list of cards for each campaign
     * Each campaign will recieve details from props
-    * User can click on donors to see donor details
+    * User can click on each campaign to see campaign details
     */
 
     return (
