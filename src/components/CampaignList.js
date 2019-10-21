@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { connect } from 'react-redux'; 
-import DonorCard from './components/DonorCard'
+import Campaign from './components/Campaign'
 
 
 //a helper functions that matches what ever value I need from state to props for campaignlist 
@@ -20,9 +20,10 @@ const CampaignList = props => {
     * Each campaign will recieve details from props
     * User can click on donors to see donor details
     */
+
     return (
         <div className="campaigns">
-            {props.campaigns.map( campaign => <DonorCard id={} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors}/>)}
+            {props.campaigns.map( campaign => <Campaign id={} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
         </div>
     )
 }
