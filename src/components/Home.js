@@ -14,7 +14,8 @@ const Home = props => {
         </div>
 
         <DonorsList/>
-    </div>)
+    </div>
+    )
 }
 
 export default Home
