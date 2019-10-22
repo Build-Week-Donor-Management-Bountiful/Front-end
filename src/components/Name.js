@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from "formik";
 import styled from "styled-components";
-import User from '../images/user.png';
+
 
 const boxLength="300px";
 const boxHeight="30px;"
@@ -31,21 +31,21 @@ const StyledField = styled(Field)`
   font-size:16px;
   font-family: 'Muli', sans-serif;
   border:none;
-
 `;
 
 const Img = styled.img`
   width:20px;
+  margin-right:3px;
   // border:1px solid grey;
 `;
 
 
-export default function Name({fieldName,fieldType,fieldPlaceHolder,touched,errors}) {
+export default function Name({fieldName,fieldType,fieldPlaceHolder,touched,errors,iconImg,imgTxt}) {
   return (
     <div>
       <DivEntryBox>
-        <Img src={User} alt="User Icon" />
-        <StyledField type={fieldType} name={fieldName} placeholder={fieldPlaceHolder} size="29" />
+        <Img src={iconImg} alt={imgTxt} />
+        <StyledField type={fieldType} name={fieldName} placeholder={fieldPlaceHolder} size="28" />
       </DivEntryBox>
       <DivMsgBox>
         {touched && errors && (<p>{errors}</p>)}

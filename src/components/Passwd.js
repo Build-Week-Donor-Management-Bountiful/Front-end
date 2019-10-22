@@ -35,6 +35,7 @@ const StyledField = styled(Field)`
 
 const Img = styled.img`
   width:20px;
+  margin-right:3px;
   // border:1px solid grey;
 `;
 
@@ -44,7 +45,7 @@ export default function Passwd({fieldName,fieldPlaceHolder,touched,errors}) {
     <div>
       <DivEntryBox>
         <Img src={User} alt="User Icon" />
-        <StyledField type="password" name={fieldName} placeholder="Password" size="29" />
+        <StyledField type="password" name={fieldName} placeholder="Password" size="28" />
       </DivEntryBox>
       <DivMsgBox>
         {touched && errors && (<p>{errors}</p>)}

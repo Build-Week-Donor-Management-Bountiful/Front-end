@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 
 import userIcon from '../images/user.png';
+import peopleIcon from '../images/people.png';
 
 import Name from './Name';
 import Passwd from './Passwd';
@@ -17,7 +18,7 @@ const FormCtrDiv = styled.div`
   justify-content: center;
 `;
 
-const RegisDiv = styled.div`
+const CancelDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
@@ -30,73 +31,90 @@ const StyledLink = styled(Link)`
   font-family: 'Muli', sans-serif;
 `;
 
-const LogInForm = ({values,errors,touched,status}) => {
+const RegisterForm = ({values,errors,touched,status}) => {
   const [data, setData] = useState({});
   useEffect(() => {
     // console.log("This is status in useEffects: ",status);
     status && setData(status);
   }, [status]);
 
+
   return (
     <>
       <FormCtrDiv>
         <Form>
+          <Name 
+              fieldName="name" fieldType="text" fieldPlaceHolder="Name" 
+              iconImg={userIcon} imgTxt="User Icon"
+              touched={touched.name} errors={errors.name}
+          />
           <Name 
             fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
             iconImg={userIcon} imgTxt="User Icon"
             touched={touched.userName} errors={errors.userName}
           />
           <Passwd fieldName="passwd" touched={touched.passwd} errors={errors.passwd}/>
-          <SubmitBtn textDisplay={"LogIn"}/>
-          <RegisDiv>
+          <Name 
+              fieldName="orgName" fieldType="text" fieldPlaceHolder="OrganizationName" 
+              iconImg={peopleIcon} imgTxt="People Icon"
+              touched={touched.orgName} errors={errors.orgName}
+          />
+          <SubmitBtn textDisplay={"Register"}/>
+          <CancelDiv>
             <p>
-              Or register
+              Or go back to LogIn page
               <span> 
-                <StyledLink to='/register' > here</StyledLink>
+              <StyledLink to='/' > here</StyledLink>
               </span>
             </p>
-          </RegisDiv>
+          </CancelDiv>
         </Form>
         
       </FormCtrDiv>
 
-
       {/* The following code is for testing purposes only */}
       {/* comment out in customer version of the code */}
+      <p>{`The fullname is: ${data.name}`}</p>
       <p>{`The user name is: ${data.userName}`}</p>
       <p>{`The password is: ${data.passwd}`}</p>
+      <p>{`The orginization is: ${data.orgName}`}</p>
+
 
     </>
 
   );
     
  
- } //End of LogInForm function
+ } //End of RegisterForm function
  
  
  
-const FormikLogInForm = withFormik({
+const FormikRegisterForm = withFormik({
   
-  mapPropsToValues({ userName, passwd }) {
+  mapPropsToValues({ name, userName, passwd, orgName }) {
     return {
+      name: name || "",
       userName: userName || "",
       passwd: passwd || "",
+      orgName: orgName || "",
     };
   },
 
   validationSchema: Yup.object().shape({
+    name: Yup.string().required("Please input the full name of the user"),
     userName: Yup.string().required("Please input a user name"),
     passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
+    orgName: Yup.string().required("Please input an orginization name"),
   }),
   
   handleSubmit(values, { setStatus, resetForm }) {
     resetForm();
     // console.log("In the handleSubmit function and values is: ",values);
     setStatus(values);
-    
+
   },
   
   
-})(LogInForm); 
+})(RegisterForm); 
   
-export default FormikLogInForm;
+export default FormikRegisterForm;

@@ -1,12 +1,16 @@
 import React from 'react';
+import {Route} from 'react-router-dom';
 import './App.css';
-import FormikLogInForm from './components/LogInForm';
+
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+
 
 function App() {
   return (
     <div className="App">
-      <FormikLogInForm />
-      
+      <Route exact path="/" component={LoginPage}/>
+      <Route path="/register" component={RegisterPage}/>
 
 
     </div>
