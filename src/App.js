@@ -13,28 +13,28 @@ import DonorDetails from './components/DonorDetails'
 //import EditCampaign from '../components/CampaignForm'; 
 //import EditDonor from '../components/EditDonor'; 
 //import AddCampaign from '../components/AddCampaign'; 
-//import AddDonor from '../components/AddDonor'; 
+import AddDonor from './components/AddDonor'; 
 
 
 
 function App() {
   return (
     <div className="App">
-      <Switch>
+      
         <Route to='/' component={Nav}/>
         <Route to='/home' component={Home}/>
         <Route to='/campaigns' component={CampaignList}/>
         <Route to='/campaign/:id' component={CampaignDetails}/>
         <Route to='/donor/:id' component={DonorDetails} />
-
+        <Route to='/addDonor' component={AddDonor} />
         
         {/* Routes for forms
           *<Route to='/editCampaign/:id' component={EditCampaign} />
           *<Route to='/editDonor/:id' component={EditDonor}/>
-          *<Route to='/addDonor' component={AddDonor} />
+          *
           *<Route to='/addCampaign' component={AddCampaign} />
         */}
-      </Switch>
+      
       
     </div>
   );
