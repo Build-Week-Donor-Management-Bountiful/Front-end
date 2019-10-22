@@ -8,7 +8,7 @@ const mapStateToProps = state => {
         donors: state.donors
     }
 }
-const Donors = props => {
+const DonorsList = props => {
     return(
         <div className="donors">
             {props.donors.map(donor => <DonorCard name={donor.name} date={donor.date}/>)}
@@ -18,4 +18,4 @@ const Donors = props => {
 
 
 
-export default connect(mapStateToProps, {})(Donors)
+export default connect(mapStateToProps, {})(DonorsList)

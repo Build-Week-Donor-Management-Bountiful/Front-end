@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { connect } from 'react-redux'; 
-import Campaign from './components/Campaign'
+import CampaignCard from './CampaignCard'
 
 
 //a helper functions that matches what ever value I need from state to props for campaignlist 
@@ -23,7 +23,7 @@ const CampaignList = props => {
 
     return (
         <div className="campaigns">
-            {props.campaigns.map( campaign => <Campaign id={props.id} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
+            {props.campaigns.map( campaign => <CampaignCard id={props.id} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
         </div>
     )
 }
