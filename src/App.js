@@ -4,6 +4,7 @@ import './App.css';
 
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
+import AddDonorPage from './components/AddDonorPage';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Route exact path="/" component={LoginPage}/>
       <Route path="/register" component={RegisterPage}/>
+      <Route path="/adddonor" component={AddDonorPage}/>
 
 
     </div>

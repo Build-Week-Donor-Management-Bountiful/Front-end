@@ -5,9 +5,9 @@ import * as Yup from "yup";
 import styled from "styled-components";
 
 import userIcon from '../images/user.png';
+import lockIcon from '../images/lock.png';
 
-import Name from './Name';
-import Passwd from './Passwd';
+import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
 
 const FormCtrDiv = styled.div`
@@ -41,12 +41,16 @@ const LogInForm = ({values,errors,touched,status}) => {
     <>
       <FormCtrDiv>
         <Form>
-          <Name 
+          <TextIn 
             fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
             iconImg={userIcon} imgTxt="User Icon"
             touched={touched.userName} errors={errors.userName}
           />
-          <Passwd fieldName="passwd" touched={touched.passwd} errors={errors.passwd}/>
+          <TextIn 
+            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            iconImg={lockIcon} imgTxt="Password Icon"
+            touched={touched.passwd} errors={errors.passwd}
+          />
           <SubmitBtn textDisplay={"LogIn"}/>
           <RegisDiv>
             <p>
@@ -65,6 +69,10 @@ const LogInForm = ({values,errors,touched,status}) => {
       {/* comment out in customer version of the code */}
       <p>{`The user name is: ${data.userName}`}</p>
       <p>{`The password is: ${data.passwd}`}</p>
+      <RegisDiv> 
+        <StyledLink to='/addDonor' > Add New Donor Page</StyledLink>
+      </RegisDiv>
+      
 
     </>
 

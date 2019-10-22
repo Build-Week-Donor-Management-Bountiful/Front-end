@@ -6,9 +6,9 @@ import styled from "styled-components";
 
 import userIcon from '../images/user.png';
 import peopleIcon from '../images/people.png';
+import lockIcon from '../images/lock.png';
 
-import Name from './Name';
-import Passwd from './Passwd';
+import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
 
 const FormCtrDiv = styled.div`
@@ -43,18 +43,22 @@ const RegisterForm = ({values,errors,touched,status}) => {
     <>
       <FormCtrDiv>
         <Form>
-          <Name 
+          <TextIn 
               fieldName="name" fieldType="text" fieldPlaceHolder="Name" 
               iconImg={userIcon} imgTxt="User Icon"
               touched={touched.name} errors={errors.name}
           />
-          <Name 
+          <TextIn 
             fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
             iconImg={userIcon} imgTxt="User Icon"
             touched={touched.userName} errors={errors.userName}
           />
-          <Passwd fieldName="passwd" touched={touched.passwd} errors={errors.passwd}/>
-          <Name 
+          <TextIn 
+            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            iconImg={lockIcon} imgTxt="Password Icon"
+            touched={touched.passwd} errors={errors.passwd}
+          />    
+          <TextIn 
               fieldName="orgName" fieldType="text" fieldPlaceHolder="OrganizationName" 
               iconImg={peopleIcon} imgTxt="People Icon"
               touched={touched.orgName} errors={errors.orgName}
