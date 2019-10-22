@@ -3,7 +3,7 @@ import DonorsList from './DonorsList';
 const CampaignDetails = props => {
     return (
         <div className="details">
-            <h2>{props.name}</h2>
+           { /*<h2>{props.name}</h2>
             <img src="" alt={`${props.name}'s campaign photo`} />
             <p>Goal: {props.goal}</p>
             <p>Money Raised: {props.raised}</p>
@@ -13,7 +13,7 @@ const CampaignDetails = props => {
                     <p>{donor.date}</p>
                     <button className="details">Details</button>
                 </div>
-            ))}
+            ))}*/}
         </div>
     )
 }

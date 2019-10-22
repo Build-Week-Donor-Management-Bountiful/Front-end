@@ -15,28 +15,41 @@ import DonorDetails from './components/DonorDetails'
 //import AddCampaign from '../components/AddCampaign'; 
 import AddDonor from './components/AddDonor'; 
 
+//redux
+import { Provider } from 'react-redux'; 
+import { createStore, applyMiddleware } from 'redux'; 
+
+//logger
+import { logger } from 'redux-logger'
+
+//reducer 
+import rootReducer from './reducers'
 
 
 function App() {
+  const store = createStore(rootReducer, applyMiddleware(logger)); 
+
   return (
-    <div className="App">
-      
-        <Route to='/' component={Nav}/>
-        <Route to='/home' component={Home}/>
-        <Route to='/campaigns' component={CampaignList}/>
-        <Route to='/campaign/:id' component={CampaignDetails}/>
-        <Route to='/donor/:id' component={DonorDetails} />
-        <Route to='/addDonor' component={AddDonor} />
+    <Provider store={store}>
+      <div className="App">
         
-        {/* Routes for forms
-          *<Route to='/editCampaign/:id' component={EditCampaign} />
-          *<Route to='/editDonor/:id' component={EditDonor}/>
-          *
-          *<Route to='/addCampaign' component={AddCampaign} />
-        */}
-      
-      
-    </div>
+          <Route path='/' component={Nav}/>
+          <Route path='/home' component={Home}/>
+          <Route path='/campaigns' component={CampaignList}/>
+          <Route path='/campaign/:id' component={CampaignDetails}/>
+          <Route path='/donor/:id' component={DonorDetails} />
+          <Route path='/addDonor' component={AddDonor} />
+          
+          {/* Routes for forms
+            *<Route to='/editCampaign/:id' component={EditCampaign} />
+            *<Route to='/editDonor/:id' component={EditDonor}/>
+            *
+            *<Route to='/addCampaign' component={AddCampaign} />
+          */}
+        
+        
+      </div>
+    </Provider>
   );
 }
 
