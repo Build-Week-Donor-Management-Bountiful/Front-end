@@ -1,7 +1,11 @@
-import React from 'react'; 
+import React, {useEffect} from 'react'; 
+
+import { withRouter } from 'react-router-dom'
 //components
 import DonorsList from './DonorsList'
+import Nav from './Nav'; 
 
+import { getUser } from '../actions'
 import { connect } from 'react-redux'; 
 
 //mapping initial state from reducer index to Home props
@@ -22,18 +26,22 @@ const mapStateToProps = (state) => {
 }
 
 const Home = props => {
-    console.log(props)
-    
-   
+        
+        useEffect(() => {
+            props.getUser()
+
+        }, [])
 
         return (
              <div className="home">
+                 <Nav/>
+                
                 <h1>Welcome, {props.username}</h1>
 
                 <div className="donor-filter">
             
-                    {props.campaigns.map(campaign => <button className="filter" onClick={() => console.log(campaign.name)}>{campaign.name}</button>)}
-                    <button className="filter">All</button>
+                   <button>+ new donor</button>
+                
                 </div>
 
                 <DonorsList/>
@@ -44,4 +52,4 @@ const Home = props => {
     
 }
 
-export default connect(mapStateToProps, {})(Home)
+export default connect(mapStateToProps,{ getUser })(Home); 
