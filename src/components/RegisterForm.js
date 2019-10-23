@@ -68,7 +68,7 @@ const RegisterForm = ({values,errors,touched,status}) => {
             <p>
               Or go back to LogIn page
               <span> 
-              <StyledLink to='/' > here</StyledLink>
+              <StyledLink to='/login' > here</StyledLink>
               </span>
             </p>
           </CancelDiv>

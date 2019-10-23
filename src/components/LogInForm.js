@@ -69,9 +69,7 @@ const LogInForm = ({values,errors,touched,status}) => {
       {/* comment out in customer version of the code */}
       <p>{`The user name is: ${data.userName}`}</p>
       <p>{`The password is: ${data.passwd}`}</p>
-      <RegisDiv> 
-        <StyledLink to='/addDonor' > Add New Donor Page</StyledLink>
-      </RegisDiv>
+      
       
 
     </>
