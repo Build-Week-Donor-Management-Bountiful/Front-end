@@ -37,9 +37,16 @@ export const getUser = () => dispatch => {
     .catch(error => { console.log(error); dispatch({ type: FETCH_FAIL, payload: error.response})}); 
 }
 
-export const updateUser = (id) => dispatch => {
+export const updateUser = (user, id) => dispatch => {
     axiosWithAuth()
     .put(`users/${id}`)
-    .then( r => {dispatch({type: UPDATE_USER, payload: 'pay'})})
+    .then( r => {dispatch({type: UPDATE_USER, payload: user})})
     .catch(error => {console.log(error)})
+}
+
+export const deleteUser = id => dispatch => {
+    axiosWithAuth()
+    .delete(`users/${id}`)
+    .then( r => { console.log(r.data); dispatch({type: DELETE_USER})})
+    .catch(error => console.log(error))
 }

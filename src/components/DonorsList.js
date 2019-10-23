@@ -30,7 +30,7 @@ const DonorsList = props => {
    // console.log(props.campaigns.map(campaign => campaign.filter(i => i !== null)));
     return(
         <div className="donors, list">
-        {donor_array.map(donor => <DonorCard name={donor.name} date={donor.date}/>)}
+        {donor_array.map(donor => <DonorCard name={donor.name} date={donor.date} id={donor.id}/>)}
     </div>
     )
 }
