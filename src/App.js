@@ -20,6 +20,11 @@ import AddDonorPage from './components/AddDonorPage';
 
 import LoginPage from './components/LogInForm'; 
 import RegisterPage from './components/RegisterPage'; 
+import EditDonorPage from './components/EditDonorPage'; 
+import EditCampaignPage from './components/EditCampaignPage'; 
+import UserSettingPage from './components/UserSettingPage'; 
+
+
 
 
 
@@ -44,18 +49,24 @@ function App() {
 
     <Provider store={store}>
       <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path="/" component={LoginPage}/>
-            <Route path="/register" component={RegisterPage}/>
-            <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
-            <PrivateRoute path='/home' component={Home}/>
-            <PrivateRoute path='/campaigns' component={CampaignList}/>
-            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-            <PrivateRoute path='/donor/:id' component={DonorDetails} />
-            
-          </Switch>
-        </Router>
+
+        <Switch>
+          <Route exact path="/" component={LoginPage}/>
+          <Route path="/register" component={RegisterPage}/>
+
+
+          {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
+          <Route path="/editDonor" component={EditDonorPage}/>
+          <Route path="/editCampaign" component={EditCampaignPage}/>
+          <Route path="/userSetting" component={UserSettingPage}/>
+          <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
+          <PrivateRoute path='/home' component={Home}/>
+          <PrivateRoute path='/campaigns' component={CampaignList}/>
+          <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
+          <PrivateRoute path='/donor/:id' component={DonorDetails} />
+          
+        </Switch>
+
       </div>
     </Provider>
 
