@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 //created so I can reuse base url and auth header
 import { axiosWithAuth } from '../utils/axiosWithAuth';
- 
+
 import styled from "styled-components";
 
 import userIcon from '../images/user.png';
@@ -46,14 +46,14 @@ const LogInForm = ({values,errors,touched,status}) => {
       <FormCtrDiv>
         <Form>
           <TextIn 
-            fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
+            fieldName="username" fieldType="text" fieldPlaceHolder="Username" 
             iconImg={userIcon} imgTxt="User Icon"
-            touched={touched.userName} errors={errors.userName}
+            touched={touched.username} errors={errors.username}
           />
           <TextIn 
-            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            fieldName="password" fieldType="password" fieldPlaceHolder="Password" 
             iconImg={lockIcon} imgTxt="Password Icon"
-            touched={touched.passwd} errors={errors.passwd}
+            touched={touched.password} errors={errors.password}
           />
           <SubmitBtn textDisplay={"LogIn"}/>
           <RegisDiv>
@@ -71,8 +71,8 @@ const LogInForm = ({values,errors,touched,status}) => {
 
       {/* The following code is for testing purposes only */}
       {/* comment out in customer version of the code */}
-      <p>{`The user name is: ${data.userName}`}</p>
-      <p>{`The password is: ${data.passwd}`}</p>
+      <p>{`The user name is: ${data.username}`}</p>
+      <p>{`The password is: ${data.password}`}</p>
       <RegisDiv> 
         <StyledLink to='/addDonor' > Add New Donor Page</StyledLink>
       </RegisDiv>
@@ -89,22 +89,34 @@ const LogInForm = ({values,errors,touched,status}) => {
  
 const FormikLogInForm = withFormik({
   
-  mapPropsToValues({ userName, passwd }) {
+  mapPropsToValues({ username, password }) {
     return {
-      userName: userName || "",
-      passwd: passwd || "",
+      username: username || "",
+      password: password || "",
     };
   },
 
   validationSchema: Yup.object().shape({
-    userName: Yup.string().required("Please input a user name"),
-    passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
+    username: Yup.string().required("Please input a user name"),
+    password: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
   }),
   
   handleSubmit(values, { setStatus, resetForm }) {
     resetForm();
     // console.log("In the handleSubmit function and values is: ",values);
     setStatus(values);
+
+
+    console.log(values)
+    //logs user in with the credentials entered using axios.post
+    axiosWithAuth()
+    .post('/auth/login/', values)
+    .then(
+      r => {
+        console.log(r.data); 
+        
+      }
+    ).catch(error => console.log(error))
     
   },
   

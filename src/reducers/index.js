@@ -6,8 +6,10 @@ const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 
 const initial = {
     id: 0, 
-    username: 'Bruce_Wayne', 
-    password: 'theRe4lD4rkknight', 
+    credentials: {
+        username: '', 
+        password: ''
+    }, 
     isFetching: false, 
     error: " ",
     organization: {
@@ -108,8 +110,9 @@ const initial = {
 const reducer = (state = initial, action) => {
     switch(action.type){
         case LOGIN: 
+        
             return {
-                ...state, 
+                ...state,  
                 isFetching: true, 
                 error: '...Logging In'
             }
