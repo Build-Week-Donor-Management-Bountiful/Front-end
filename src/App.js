@@ -20,6 +20,8 @@ import AddDonorPage from './components/AddDonorPage';
 import LoginPage from './components/LogInForm'; 
 import RegisterPage from './components/RegisterPage'; 
 import EditDonorPage from './components/EditDonorPage'; 
+import EditCampaignPage from './components/EditCampaignPage'; 
+
 
 
 
@@ -48,8 +50,8 @@ function App() {
           <Route path="/register" component={RegisterPage}/>
 
           {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-
           <Route path="/editDonor" component={EditDonorPage}/>
+          <Route path="/editCampaign" component={EditCampaignPage}/>
 
           <PrivateRoute path='/home' component={Home}/>
           <PrivateRoute path='/campaigns' component={CampaignList}/>
