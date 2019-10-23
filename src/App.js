@@ -37,6 +37,7 @@ import { logger } from 'redux-logger'
 
 //reducer 
 import rootReducer from './reducers'
+import Testing from './components/Test';
 
 
 
@@ -51,15 +52,17 @@ function App() {
           <Route exact path="/" component={LoginPage}/>
           <Route path="/register" component={RegisterPage}/>
 
+
           {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
           <Route path="/editDonor" component={EditDonorPage}/>
           <Route path="/editCampaign" component={EditCampaignPage}/>
           <Route path="/userSetting" component={UserSettingPage}/>
-
+          <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
           <PrivateRoute path='/home' component={Home}/>
           <PrivateRoute path='/campaigns' component={CampaignList}/>
           <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
           <PrivateRoute path='/donor/:id' component={DonorDetails} />
+          
         </Switch>
       </div>
     </Provider>
