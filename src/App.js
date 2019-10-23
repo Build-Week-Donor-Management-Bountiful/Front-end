@@ -23,6 +23,7 @@ import RegisterPage from './components/RegisterPage';
 
 
 
+
 //redux
 import { Provider } from 'react-redux'; 
 import { createStore, applyMiddleware } from 'redux'; 
@@ -53,7 +54,7 @@ function App() {
             <PrivateRoute path='/campaigns' component={CampaignList}/>
             <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
             <PrivateRoute path='/donor/:id' component={DonorDetails} />
-            
+
           </Switch>
         </Router>
       </div>
