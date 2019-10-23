@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 
+//redux
+import { connect } from 'react-redux'; 
+import { login } from '../actions'
+
 //created so I can reuse base url and auth header
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
@@ -34,11 +38,25 @@ const StyledLink = styled(Link)`
   font-family: 'Muli', sans-serif;
 `;
 
-const LogInForm = ({values,errors,touched,status}) => {
+
+const mapStateToProps = state => {
+    return {
+      id: state.username, 
+      username: "anybody here?",
+      password: state.username, 
+      organization: state.organization.name
+
+    }
+}
+
+
+
+const LogInForm = ({ values,errors,touched,status }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     // console.log("This is status in useEffects: ",status);
     status && setData(status);
+    
   }, [status]);
 
   return (
@@ -89,10 +107,11 @@ const LogInForm = ({values,errors,touched,status}) => {
  
 const FormikLogInForm = withFormik({
   
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password, login }) {
     return {
       username: username || "",
       password: password || "",
+      login: login
     };
   },
 
@@ -101,20 +120,24 @@ const FormikLogInForm = withFormik({
     password: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
   }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, props}) {
     resetForm();
     // console.log("In the handleSubmit function and values is: ",values);
+    
     setStatus(values);
 
-
-    console.log(values)
+    const user = {username: values.username, password: values.password}
     //logs user in with the credentials entered using axios.post
     axiosWithAuth()
-    .post('/auth/login/', values)
+    .post('/auth/login/', user)
     .then(
       r => {
-        console.log(r.data); 
+        
         localStorage.setItem('token', r.data.token);
+
+        values.login(user)
+        props.history.push("/home")
+        console.log(values)
       }
     ).catch(error => console.log(error))
     
@@ -123,4 +146,4 @@ const FormikLogInForm = withFormik({
   
 })(LogInForm); 
   
-export default FormikLogInForm;
+export default connect(mapStateToProps, { login })(FormikLogInForm)

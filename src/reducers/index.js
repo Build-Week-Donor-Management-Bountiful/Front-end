@@ -114,13 +114,22 @@ const reducer = (state = initial, action) => {
             return {
                 ...state,  
                 isFetching: true, 
-                error: '...Logging In'
+                error: '...Logging In', 
+                credentials:{
+                    username: action.payload.username, 
+                    password: action.payload.password, 
+                },
+                
+                id: action.payload.id
             }
         case SIGNUP: 
             return {
                 ...state, 
                 isFetching: true, 
-                error: '...Creating Your Account'
+                error: '...Creating Your Account', 
+                username: action.payload.username, 
+                password: action.payload.password, 
+                id: action.payload.id
             }
         case ADD_DONOR: 
             return {

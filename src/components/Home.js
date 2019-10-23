@@ -12,28 +12,36 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     const donors = []; 
-  
+    console.log(state)
     return {
-        username: state.username, 
+        username: state.credentials.username,
         campaigns: state.organization.campaigns,
         donors:state.organization.campaigns.map(campaign => donors.push(campaign.donors))
     }
+
 }
+
 const Home = props => {
+    console.log(props)
     
-   return ( 
-    <div className="home">
-        <h1>Welcome, {props.username}</h1>
+   
 
-        <div className="donor-filter">
+        return (
+             <div className="home">
+                <h1>Welcome, {props.username}</h1>
+
+                <div className="donor-filter">
             
-            {props.campaigns.map(campaign => <button className="filter" onClick={() => console.log(campaign.name)}>{campaign.name}</button>)}
-            <button className="filter">All</button>
-        </div>
+                    {props.campaigns.map(campaign => <button className="filter" onClick={() => console.log(campaign.name)}>{campaign.name}</button>)}
+                    <button className="filter">All</button>
+                </div>
 
-        <DonorsList/>
-    </div>
-    )
+                <DonorsList/>
+            </div>
+        ) 
+        
+   
+    
 }
 
 export default connect(mapStateToProps, {})(Home)

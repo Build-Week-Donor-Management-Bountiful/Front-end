@@ -7,6 +7,7 @@ import CampaignCard from './CampaignCard'
 
 const mapStateToProps = state => {
     return {
+        credentials: state.credentials, 
         campaigns: state.organization.campaigns
     }
 }
@@ -20,7 +21,7 @@ const CampaignList = props => {
     * Each campaign will recieve details from props
     * User can click on each campaign to see campaign details
     */
-
+    console.log(props.credentials)
     return (
 
         <div className="campaign-list">
