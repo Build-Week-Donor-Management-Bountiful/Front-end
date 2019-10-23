@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, ADD_DONOR, UPDATE_DONOR,  FETCH_FAIL, FETCH_SUCCESS, CREATE_CAMPAIGN, GET_USER, DELETE_USER, UPDATE_USER } from '../actions/index'; 
+import { LOGIN, SIGNUP, ADD_DONOR, UPDATE_DONOR, FETCH_FAIL, FETCH_SUCCESS, CREATE_CAMPAIGN, GET_USER, DELETE_USER, UPDATE_USER } from '../actions/index'; 
 
 
 const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
