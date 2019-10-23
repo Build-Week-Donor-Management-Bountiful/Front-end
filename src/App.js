@@ -17,6 +17,7 @@ import AddDonorPage from './components/AddDonorPage';
 //redux
 import { Provider } from 'react-redux'; 
 import { createStore, applyMiddleware } from 'redux'; 
+import thunk from 'redux-thunk'; 
 
 //logger
 import { logger } from 'redux-logger'

@@ -70,13 +70,13 @@ const LogInForm = ({values,errors,touched,status}) => {
 
 
       {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
+      {/* comment out in customer version of the code 
       <p>{`The user name is: ${data.username}`}</p>
       <p>{`The password is: ${data.password}`}</p>
       <RegisDiv> 
         <StyledLink to='/addDonor' > Add New Donor Page</StyledLink>
       </RegisDiv>
-      
+      */}
 
     </>
 
@@ -114,7 +114,7 @@ const FormikLogInForm = withFormik({
     .then(
       r => {
         console.log(r.data); 
-        
+        localStorage.setItem('token', r.data.token);
       }
     ).catch(error => console.log(error))
     
