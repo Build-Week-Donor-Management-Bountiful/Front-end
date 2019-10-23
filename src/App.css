@@ -20,3 +20,33 @@
 .App-link {
   color: #09d3ac;
 }
+
+img{
+  width: 100%; 
+  height: 250px; 
+}
+
+.campaigns{
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-around;
+}
+
+.campaign, .donor{
+  width: 25%; 
+  margin: .2%;
+  text-align: left; 
+  border: 1px solid black; 
+}
+
+.campaign p, h3{
+  margin: .5%; 
+}
+
+.list{
+  display:flex; 
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  
+}
+
