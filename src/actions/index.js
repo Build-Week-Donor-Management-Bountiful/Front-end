@@ -8,6 +8,10 @@ export const SIGNUP = 'SIGNUP';
 export const ADD_DONOR = 'ADD_DONOR'; 
 //update communication
 export const UPDATE_DONOR = 'UPDATE_DONOR'; 
+
+export const UPDATE_USER = 'UPDATE_USER'; 
+
+export const DELETE_USER = 'DELETE_USER'; 
 //create campaign
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN'; 
 
@@ -30,9 +34,12 @@ export const getUser = () => dispatch => {
     axiosWithAuth()
     .get(`users/user`)
     .then(r =>{console.log(r.data); dispatch({type: GET_USER, payload: r.data})})
-    .catch(error => console.log(error)); 
+    .catch(error => { console.log(error); dispatch({ type: FETCH_FAIL, payload: error.response})}); 
 }
 
-/*
-dispatch({ type: FETCH_FAIL, payload: error.response})
-*/
+export const updateUser = (id) => dispatch => {
+    axiosWithAuth()
+    .put(`users/${id}`)
+    .then( r => {dispatch({type: UPDATE_USER, payload: 'pay'})})
+    .catch(error => {console.log(error)})
+}
