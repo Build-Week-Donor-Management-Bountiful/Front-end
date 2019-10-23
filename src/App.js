@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Route, Switch} from 'react-router-dom'
 import './App.css';
 
@@ -26,10 +27,12 @@ import { logger } from 'redux-logger'
 import rootReducer from './reducers'
 
 
+
 function App() {
   const store = createStore(rootReducer, applyMiddleware(logger)); 
 
   return (
+
     <Provider store={store}>
       <div className="App">
         
@@ -50,6 +53,7 @@ function App() {
         
       </div>
     </Provider>
+
   );
 }
 
