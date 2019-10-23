@@ -9,7 +9,7 @@ import handsPic from '../images/user.png';
 export default function LoginPage() {
   return (
     <section className="login-page">
-      <FormikLogInForm />
+      <FormikLogInForm {...props}/>
         
     </section>
   );

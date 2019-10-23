@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
+
+//redux
+import { connect } from 'react-redux'; 
+import { login } from '../actions'
+
+//created so I can reuse base url and auth header
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+
 import styled from "styled-components";
 
 import userIcon from '../images/user.png';
@@ -30,11 +38,25 @@ const StyledLink = styled(Link)`
   font-family: 'Muli', sans-serif;
 `;
 
-const LogInForm = ({values,errors,touched,status}) => {
+
+const mapStateToProps = state => {
+    return {
+      id: state.username, 
+      username: "anybody here?",
+      password: state.username, 
+      organization: state.organization.name
+
+    }
+}
+
+
+
+const LogInForm = ({ values,errors,touched,status }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     // console.log("This is status in useEffects: ",status);
     status && setData(status);
+    
   }, [status]);
 
   return (
@@ -42,14 +64,14 @@ const LogInForm = ({values,errors,touched,status}) => {
       <FormCtrDiv>
         <Form>
           <TextIn 
-            fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
+            fieldName="username" fieldType="text" fieldPlaceHolder="Username" 
             iconImg={userIcon} imgTxt="User Icon"
-            touched={touched.userName} errors={errors.userName}
+            touched={touched.username} errors={errors.username}
           />
           <TextIn 
-            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            fieldName="password" fieldType="password" fieldPlaceHolder="Password" 
             iconImg={lockIcon} imgTxt="Password Icon"
-            touched={touched.passwd} errors={errors.passwd}
+            touched={touched.password} errors={errors.password}
           />
           <SubmitBtn textDisplay={"LogIn"}/>
           <RegisDiv>
@@ -66,13 +88,13 @@ const LogInForm = ({values,errors,touched,status}) => {
 
 
       {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
-      <p>{`The user name is: ${data.userName}`}</p>
-      <p>{`The password is: ${data.passwd}`}</p>
+      {/* comment out in customer version of the code 
+      <p>{`The user name is: ${data.username}`}</p>
+      <p>{`The password is: ${data.password}`}</p>
       <RegisDiv> 
         <StyledLink to='/addDonor' > Add New Donor Page</StyledLink>
       </RegisDiv>
-      
+      */}
 
     </>
 
@@ -85,26 +107,43 @@ const LogInForm = ({values,errors,touched,status}) => {
  
 const FormikLogInForm = withFormik({
   
-  mapPropsToValues({ userName, passwd }) {
+  mapPropsToValues({ username, password, login }) {
     return {
-      userName: userName || "",
-      passwd: passwd || "",
+      username: username || "",
+      password: password || "",
+      login: login
     };
   },
 
   validationSchema: Yup.object().shape({
-    userName: Yup.string().required("Please input a user name"),
-    passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
+    username: Yup.string().required("Please input a user name"),
+    password: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
   }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm, props}) {
     resetForm();
     // console.log("In the handleSubmit function and values is: ",values);
+    
     setStatus(values);
+
+    const user = {username: values.username, password: values.password}
+    //logs user in with the credentials entered using axios.post
+    axiosWithAuth()
+    .post('/auth/login/', user)
+    .then(
+      r => {
+        
+        localStorage.setItem('token', r.data.token);
+
+        values.login(user)
+        props.history.push("/home")
+        console.log(values)
+      }
+    ).catch(error => console.log(error))
     
   },
   
   
 })(LogInForm); 
   
-export default FormikLogInForm;
+export default connect(mapStateToProps, { login })(FormikLogInForm)

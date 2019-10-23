@@ -1,24 +1,31 @@
 import React from 'react';
 
-import {Route, Switch} from 'react-router-dom'
+//components for routing
+import {Route, Switch} from 'react-router-dom'; 
+
+//will redirect user to login page if user is not logged in
+import PrivateRoute from './components/PrivateRoute'; 
+
 import './App.css';
 
 //components for routes
-import Nav from './components/Nav'; 
 import Home from './components/Home'; 
+
 import CampaignList from './components/CampaignList'; 
 import CampaignDetails from './components/CampaignDetails'; 
-import DonorDetails from './components/DonorDetails'
 
-//forms (not created yet) 
-//import EditCampaign from '../components/CampaignForm'; 
-//import EditDonor from '../components/EditDonor'; 
-//import AddCampaign from '../components/AddCampaign'; 
-import AddDonor from './components/AddDonor'; 
+import DonorDetails from './components/DonorDetails'
+import AddDonorPage from './components/AddDonorPage'; 
+
+import LoginPage from './components/LogInForm'; 
+import RegisterPage from './components/RegisterPage'; 
+
+
 
 //redux
 import { Provider } from 'react-redux'; 
 import { createStore, applyMiddleware } from 'redux'; 
+import thunk from 'redux-thunk'; 
 
 //logger
 import { logger } from 'redux-logger'
@@ -29,28 +36,22 @@ import rootReducer from './reducers'
 
 
 function App() {
-  const store = createStore(rootReducer, applyMiddleware(logger)); 
+  const store = createStore(rootReducer, applyMiddleware(logger, thunk)); 
 
   return (
 
     <Provider store={store}>
       <div className="App">
-        
-          <Route path='/' component={Nav}/>
-          <Route path='/home' component={Home}/>
-          <Route path='/campaigns' component={CampaignList}/>
-          <Route path='/campaign/:id' component={CampaignDetails}/>
-          <Route path='/donor/:id' component={DonorDetails} />
-          <Route path='/addDonor' component={AddDonor} />
-          
-          {/* Routes for forms
-            *<Route to='/editCampaign/:id' component={EditCampaign} />
-            *<Route to='/editDonor/:id' component={EditDonor}/>
-            *
-            *<Route to='/addCampaign' component={AddCampaign} />
-          */}
-        
-        
+        <Switch>
+          <Route exact path="/" component={LoginPage}/>
+          <Route path="/register" component={RegisterPage}/>
+
+          <PrivateRoute path="/adddonor" component={AddDonorPage}/>
+          <PrivateRoute path='/home' component={Home}/>
+          <PrivateRoute path='/campaigns' component={CampaignList}/>
+          <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
+          <PrivateRoute path='/donor/:id' component={DonorDetails} />
+        </Switch>
       </div>
     </Provider>
 

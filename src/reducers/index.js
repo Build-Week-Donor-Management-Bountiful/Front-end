@@ -1,41 +1,49 @@
+import { LOGIN, SIGNUP, ADD_DONOR, UPDATE_DONOR, FETCH_FAIL, CREATE_CAMPAIGN } from '../actions/index'; 
+
+
 const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
 //raised needs to be calculation of all donations
 
 const initial = {
-    username: 'Bruce Wayne', 
-    password: 'theRe4lD4rkknight', 
+    id: 0, 
+    credentials: {
+        username: '', 
+        password: ''
+    }, 
+    isFetching: false, 
+    error: " ",
     organization: {
         name: 'Wayne Enterprises', 
         campaigns: [
             {
                 id: 0, 
-                name: "Feed The Homeless of Gotham" ,
+                name: "Feed The Homeless" ,
                 img: "https://images.unsplash.com/photo-1518398046578-8cca57782e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
                 mission: mission_dummy, 
                 donors: [
                     {
                         id: 0, 
-                        name: 'The Joker',
+                        name: 'John Timoth',
                         email: 'ysoserious@any.net',
-                        phone: '555-555-555',
-                        amount: 0.50, 
+                        phone: '555-907-5955',
+                        amount: 50, 
                         date: '10/12/19'
                     },
                     {
                         id: 1, 
-                        name: 'The Joker',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
-                        amount: 0.50, 
+                        name: 'Apple Smith',
+                        email: 'ApplePie978@anyd.net',
+                        phone: '555-123-4555',
+                        amount: 34, 
                         date: '10/12/19'
                     },
 
                     {
                         id: 2, 
-                        name: 'The Joker',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
-                        amount: 0.50, 
+                        name: 'Tommy Bean',
+                        email: 'ttbeansinc@any.net',
+                        phone: '976-555-4525',
+                        amount: 45, 
                         date: '10/12/19'
                     }
 
@@ -101,6 +109,46 @@ const initial = {
 
 const reducer = (state = initial, action) => {
     switch(action.type){
+        case LOGIN: 
+        
+            return {
+                ...state,  
+                isFetching: true, 
+                error: '...Logging In', 
+                credentials:{
+                    username: action.payload.username, 
+                    password: action.payload.password, 
+                },
+                
+                id: action.payload.id
+            }
+        case SIGNUP: 
+            return {
+                ...state, 
+                isFetching: true, 
+                error: '...Creating Your Account', 
+                username: action.payload.username, 
+                password: action.payload.password, 
+                id: action.payload.id
+            }
+        case ADD_DONOR: 
+            return {
+                ...state, 
+                error: 'Adding Donor'
+            }
+        case UPDATE_DONOR: 
+            return {
+                ...state, 
+                error: 'Updating Donor'
+            }
+
+        case FETCH_FAIL: 
+            return{
+                ...state, 
+                isFetching: false, 
+                error: action.payload
+            }
+    
         default: 
             return state; 
     }

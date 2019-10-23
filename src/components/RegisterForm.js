@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+//redux
+import { connect } from 'react-redux'; 
+
+//formik and yup used to validate form
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
 
+//axios to make a request to register a new user
+import { axiosWithAuth } from '../utils/axiosWithAuth'; 
+
+//components to build form
 import userIcon from '../images/user.png';
 import peopleIcon from '../images/people.png';
 import lockIcon from '../images/lock.png';
 
 import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
+
+
+
+
+
+import styled from "styled-components";
+
+/***********************Styled Components***********************/
 
 const FormCtrDiv = styled.div`
   margin-top:50px;
@@ -31,6 +47,10 @@ const StyledLink = styled(Link)`
   font-family: 'Muli', sans-serif;
 `;
 
+/*******************End of Styled Components*******************/
+
+
+
 const RegisterForm = ({values,errors,touched,status}) => {
   const [data, setData] = useState({});
   useEffect(() => {
@@ -43,26 +63,38 @@ const RegisterForm = ({values,errors,touched,status}) => {
     <>
       <FormCtrDiv>
         <Form>
+          
+          {
+            /***Commented out fields that are not needed to signup a new user. This may change if backend is updated***/
+
+            /*
+            NAME:
+              <TextIn 
+                fieldName="name" fieldType="text" fieldPlaceHolder="Name" 
+                iconImg={userIcon} imgTxt="User Icon"
+                touched={touched.name} errors={errors.name}
+            />
+            ORGANIZATION:
+              <TextIn 
+                  fieldName="orgName" fieldType="text" fieldPlaceHolder="OrganizationName" 
+                  iconImg={peopleIcon} imgTxt="People Icon"
+                  touched={touched.orgName} errors={errors.orgName}
+              />
+          
+          
+          */
+         }
           <TextIn 
-              fieldName="name" fieldType="text" fieldPlaceHolder="Name" 
-              iconImg={userIcon} imgTxt="User Icon"
-              touched={touched.name} errors={errors.name}
-          />
-          <TextIn 
-            fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
+            fieldName="username" fieldType="text" fieldPlaceHolder="Username" 
             iconImg={userIcon} imgTxt="User Icon"
-            touched={touched.userName} errors={errors.userName}
+            touched={touched.username} errors={errors.username}
           />
           <TextIn 
-            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            fieldName="password" fieldType="password" fieldPlaceHolder="Password" 
             iconImg={lockIcon} imgTxt="Password Icon"
-            touched={touched.passwd} errors={errors.passwd}
+            touched={touched.password} errors={errors.password}
           />    
-          <TextIn 
-              fieldName="orgName" fieldType="text" fieldPlaceHolder="OrganizationName" 
-              iconImg={peopleIcon} imgTxt="People Icon"
-              touched={touched.orgName} errors={errors.orgName}
-          />
+          
           <SubmitBtn textDisplay={"Register"}/>
           <CancelDiv>
             <p>
@@ -77,12 +109,12 @@ const RegisterForm = ({values,errors,touched,status}) => {
       </FormCtrDiv>
 
       {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
-      <p>{`The fullname is: ${data.name}`}</p>
-      <p>{`The user name is: ${data.userName}`}</p>
-      <p>{`The password is: ${data.passwd}`}</p>
-      <p>{`The orginization is: ${data.orgName}`}</p>
-
+      {/* comment out in customer version of the code 
+        <p>{`The fullname is: ${data.name}`}</p>
+        <p>{`The user name is: ${data.username}`}</p>
+        <p>{`The password is: ${data.password}`}</p>
+        <p>{`The orginization is: ${data.orgName}`}</p>
+      */}
 
     </>
 
@@ -95,26 +127,49 @@ const RegisterForm = ({values,errors,touched,status}) => {
  
 const FormikRegisterForm = withFormik({
   
-  mapPropsToValues({ name, userName, passwd, orgName }) {
+  mapPropsToValues({ name, username, password, orgName }) {
     return {
-      name: name || "",
-      userName: userName || "",
-      passwd: passwd || "",
-      orgName: orgName || "",
+     
+      username: username || "",
+      password: password || ""
+
+      /*
+      ,name: name || "",
+      orgName: orgName || ""
+      */
     };
   },
 
   validationSchema: Yup.object().shape({
+   
+    username: Yup.string().required("Please input a user name"),
+    password: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
+   
+    /*
     name: Yup.string().required("Please input the full name of the user"),
-    userName: Yup.string().required("Please input a user name"),
-    passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
-    orgName: Yup.string().required("Please input an orginization name"),
+    orgName: Yup.string().required("Please input an orginization name")
+    */
   }),
   
   handleSubmit(values, { setStatus, resetForm }) {
     resetForm();
+
     // console.log("In the handleSubmit function and values is: ",values);
     setStatus(values);
+
+    //axios POST request to backend
+    //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
+    console.log("values:", values)
+    axiosWithAuth()
+    .post('auth/register/', values)
+    .then(
+      r =>{ 
+        console.log(r.data)
+        localStorage.setItem('token', r.data.token)
+      }
+    ).catch(
+      error => console.log(error.data)
+    )
 
   },
   

@@ -5,7 +5,7 @@ import DonorCard from './DonorCard'
 const mapStateToProps = (state) => {
   
     return {
-        username: state.username, 
+      
         campaigns: state.organization.campaigns,
     }
 }
