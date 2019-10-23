@@ -1,17 +1,25 @@
 import React from 'react';
 
-import {Route, Switch} from 'react-router-dom'
+//components for routing
+import {Route, Switch} from 'react-router-dom'; 
+
+//will redirect user to login page if user is not logged in
+import PrivateRoute from './components/PrivateRoute'; 
+
 import './App.css';
 
 //components for routes
-import Nav from './components/Nav'; 
 import Home from './components/Home'; 
+
 import CampaignList from './components/CampaignList'; 
 import CampaignDetails from './components/CampaignDetails'; 
+
 import DonorDetails from './components/DonorDetails'
+import AddDonorPage from './components/AddDonorPage'; 
+
 import LoginPage from './components/LogInForm'; 
 import RegisterPage from './components/RegisterPage'; 
-import AddDonorPage from './components/AddDonorPage'; 
+
 
 
 //redux
@@ -28,25 +36,22 @@ import rootReducer from './reducers'
 
 
 function App() {
-  const store = createStore(rootReducer, applyMiddleware(logger)); 
+  const store = createStore(rootReducer, applyMiddleware(logger, thunk)); 
 
   return (
 
     <Provider store={store}>
       <div className="App">
-        
+        <Switch>
           <Route exact path="/" component={LoginPage}/>
           <Route path="/register" component={RegisterPage}/>
-          <Route path="/adddonor" component={AddDonorPage}/>
-          <Route path='/home' component={Home}/>
-          <Route path='/campaigns' component={CampaignList}/>
-          <Route path='/campaign/:id' component={CampaignDetails}/>
-          <Route path='/donor/:id' component={DonorDetails} />
-          
-          
-          
-        
-        
+
+          <PrivateRoute path="/adddonor" component={AddDonorPage}/>
+          <PrivateRoute path='/home' component={Home}/>
+          <PrivateRoute path='/campaigns' component={CampaignList}/>
+          <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
+          <PrivateRoute path='/donor/:id' component={DonorDetails} />
+        </Switch>
       </div>
     </Provider>
 
