@@ -10,3 +10,5 @@ export const ADD_DONOR = 'ADD_DONOR';
 export const UPDATE_DONOR = 'UPDATE_DONOR'; 
 //create campaign
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN'; 
+
+export const FETCH_FAIL = 'FETCH_FAIL';

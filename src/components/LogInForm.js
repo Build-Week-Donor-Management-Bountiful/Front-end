@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
+
+//created so I can reuse base url and auth header
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+ 
 import styled from "styled-components";
 
 import userIcon from '../images/user.png';
