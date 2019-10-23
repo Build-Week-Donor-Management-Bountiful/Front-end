@@ -1,6 +1,9 @@
 import React from 'react'; 
 import { connect } from 'react-redux'; 
+import { login } from '../actions'
 import CampaignCard from './CampaignCard'
+import Nav from './Nav'
+import {axiosWithAuth }from '../utils/axiosWithAuth'
 
 
 //a helper functions that matches what ever value I need from state to props for campaignlist 
@@ -21,10 +24,15 @@ const CampaignList = props => {
     * Each campaign will recieve details from props
     * User can click on each campaign to see campaign details
     */
+
+    
     console.log(props.credentials)
+
+
     return (
 
         <div className="campaign-list">
+            <Nav/>
             <h2>Your Campaigns</h2>
             <div className="campaigns">
                 {props.campaigns.map( campaign => <CampaignCard id={campaign.id} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
@@ -33,4 +41,4 @@ const CampaignList = props => {
     )
 }
 
-export default connect(mapStateToProps, {})(CampaignList); 
+export default connect(mapStateToProps, { login })(CampaignList); 

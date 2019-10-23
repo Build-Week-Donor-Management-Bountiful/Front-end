@@ -41,9 +41,9 @@ const StyledLink = styled(Link)`
 
 const mapStateToProps = state => {
     return {
-      id: state.username, 
-      username: "anybody here?",
-      password: state.username, 
+      id: state.id, 
+      username: state.username,
+      password: state.password, 
       organization: state.organization.name
 
     }
