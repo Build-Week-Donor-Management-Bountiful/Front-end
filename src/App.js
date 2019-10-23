@@ -13,7 +13,7 @@ import DonorDetails from './components/DonorDetails'
 //import EditCampaign from '../components/CampaignForm'; 
 //import EditDonor from '../components/EditDonor'; 
 //import AddCampaign from '../components/AddCampaign'; 
-import AddDonor from './components/AddDonor'; 
+//import AddDonor from './components/AddDonor'; 
 
 //redux
 import { Provider } from 'react-redux'; 
@@ -38,7 +38,7 @@ function App() {
           <Route path='/campaigns' component={CampaignList}/>
           <Route path='/campaign/:id' component={CampaignDetails}/>
           <Route path='/donor/:id' component={DonorDetails} />
-          <Route path='/addDonor' component={AddDonor} />
+          
           
           {/* Routes for forms
             *<Route to='/editCampaign/:id' component={EditCampaign} />
