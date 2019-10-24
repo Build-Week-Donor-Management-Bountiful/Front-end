@@ -55,14 +55,7 @@ const StyledLink = styled(Link)`
 //   }
 // }
 
-function dateObjToStr(date) {
-  
-  let dateString = (date.getMonth()+1)<10 ? "0"+(date.getMonth()+1) : ""+(date.getMonth()+1);
-  dateString = dateString + "/" + (date.getDate()<10 ? "0"+date.getDate() : date.getDate());
-  dateString = dateString + "/" + date.getFullYear();
 
-  return dateString;
-}
 
 
 const AddDonorForm = (props) => {
@@ -71,14 +64,11 @@ const AddDonorForm = (props) => {
   
   useEffect(() => {
     if(status) {
-      let dateString = dateObjToStr(status.date);
       
 
       setData({ 
         ...data, 
-        ...status, 
-        "dateString": dateString,
-      });
+        ...status      });
     }
 
   }, [status]);
@@ -167,9 +157,15 @@ const AddDonorForm = (props) => {
             touched={touched.amount} errors={errors.amount}
           />
 
-          {/* This is for last communication date */}
-          <DateSet date={values.date} handleDateChange={handleDateChange} errors={errors.date} touched={touched.date}/>
+          <TextIn 
+            fieldName="date" fieldType="text" fieldPlaceHolder="Date" 
+            iconImg={cashIcon} imgTxt="Cash Icon"
+            touched={touched.date} errors={errors.date}
+          />
 
+          {/* This is for last communication date 
+          <DateSet date={values.date} handleDateChange={handleDateChange} errors={errors.date} touched={touched.date}/>
+*/}
           {/* This is for last communication method */}
           {/* <CommMeth  fieldName="commMeth" touched={touched.commMeth} errors={errors.commMeth} /> */}
 
@@ -187,14 +183,6 @@ const AddDonorForm = (props) => {
       </FormCtrDiv>
 
 
-      {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
-      <p>{`The donor name is: ${data.name}`}</p>
-      <p>{`The email address is: ${data.email}`}</p>
-      <p>{`The phone number is: ${data.phone}`}</p>
-      <p>{`The campaign is: ${data.campaign}`}</p>
-      <p>{`The new donation amount: ${data.amount}`}</p>
-      <p>{`The date is: ${data.date?dateObjToStr(data.date):"noOneHere"}`}</p>
 
     </>
 
@@ -228,7 +216,7 @@ const FormikAddDonorForm = withFormik({
     // commMeth: Yup.string().oneOf(["email", "phone"],"Please choose communication method").required("Please choose communication method"),
     campaign: Yup.string().required("Please input a campaign name"),
     amount: Yup.number().required("Please input new donation amount").typeError("Please input only digits not other chars"),
-    date: Yup.mixed().required("Please set a date"),
+    date: Yup.string().required("Please set a date"),
     
   }),
   
@@ -236,8 +224,8 @@ const FormikAddDonorForm = withFormik({
 
     resetForm();
     setStatus(values);
-    console.log({id: Math.random(), ...values, date:dateObjToStr(values.date)})
-    // props.addDonor({id: Math.random(), ...values, date:dateObjToStr(values.date)});
+    
+    props.addDonor({id: Math.random(), ...values});
     
     
   },
