@@ -33,7 +33,18 @@ const CampaignList = props => {
             <Nav/>
             <h2>Your Campaigns</h2>
             <div className="campaigns">
-                {props.campaigns.map( campaign => <CampaignCard id={campaign.id} name={campaign.name} mission={campaign.mission} img={campaign.img} donors={campaign.donors} goal={campaign.goal} raised={campaign.raised}/>)}
+                {props.campaigns.map( campaign => 
+                    <CampaignCard 
+                        id={campaign.id} 
+                        key={campaign.id}
+                        name={campaign.name} 
+                        mission={campaign.mission} 
+                        img={campaign.img} 
+                        donors={campaign.donors} 
+                        goal={campaign.goal} 
+                        raised={campaign.raised}
+                    />
+                )}
             </div>
         </div>
     )
