@@ -33,6 +33,10 @@ const DonorDetails = props => {
             <p>Telephone: {donor.phone}</p>
             <p>Last Communication: {donor.date}</p>
             <button href="#">Update Donor Details</button>
+
+            
+
+
         </div>
     )
 }

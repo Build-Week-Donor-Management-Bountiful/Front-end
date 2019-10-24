@@ -1,21 +1,35 @@
 import React from 'react'; 
-import DonorsList from './DonorsList'; 
-const CampaignDetails = props => {
-    return (
-        <div className="details">
-           { /*<h2>{props.name}</h2>
-            <img src="" alt={`${props.name}'s campaign photo`} />
-            <p>Goal: {props.goal}</p>
-            <p>Money Raised: {props.raised}</p>
-            {props.donors.map( donor => (
-                <div className="donor" key={donor.id}>
-                    <h4>{donor.name}</h4>
-                    <p>{donor.date}</p>
-                    <button className="details">Details</button>
-                </div>
-            ))}*/}
-        </div>
-    )
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'; 
+import { login } from '../actions'
+
+//Helper functions that matches what ever value I need from state to props  
+const mapStateToProps = state => {
+    return {
+        campaigns: state.organization.campaigns
+    }
 }
 
-export default CampaignDetails
+const CampaignDetails = props => {
+    
+    const campaign = props.campaigns.find(cpn => cpn.id === Number(props.match.params.id))
+
+    return (
+
+        <div className="campaign-details">
+            <h1>Campaign Name: {campaign.name}</h1>
+            <p>Mission: {campaign.mission}</p>
+            <p>Funding Goal: {campaign.goal}</p>
+            <p>Money Raised: {campaign.raised}</p>
+
+            <Link to="/editCampaign"><button >Edit Campaign</button></Link>
+        </div>
+
+    );
+}
+
+export default connect(mapStateToProps, { login })(CampaignDetails); 
+
+
+
+

@@ -15,6 +15,7 @@ import Home from './components/Home';
 import CampaignList from './components/CampaignList'; 
 import CampaignDetails from './components/CampaignDetails'; 
 
+import DonorsList from './components/DonorsList'; 
 import DonorDetails from './components/DonorDetails'; 
 import AddDonorPage from './components/AddDonorPage'; 
 
@@ -54,24 +55,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
 
-<<<<<<< HEAD
-        <Header />
 
-        <Switch>
-          <Route exact path="/" component={LoginPage}/>
-          <Route path="/register" component={RegisterPage}/>
-
-          {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-          <Route path="/editDonor" component={EditDonorPage}/>
-          <Route path="/editCampaign" component={EditCampaignPage}/>
-          <Route path="/userSetting" component={UserSettingPage}/>
-
-          <PrivateRoute path='/home' component={Home}/>
-          <PrivateRoute path='/campaigns' component={CampaignList}/>
-          <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-          <PrivateRoute path='/donor/:id' component={DonorDetails} />
-        </Switch>
-=======
 
         <Router>
           <Switch>
@@ -85,17 +69,19 @@ function App() {
             <Route path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
             <PrivateRoute path='/home' component={Home}/>
-            <PrivateRoute path='/campaigns' component={CampaignList}/>
-            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-            <PrivateRoute path='/donor/:id' component={DonorDetails} />
+
+
+            <Route path='/campaigns' component={CampaignList}/>
+            <Route path='/campaign/:id' component={CampaignDetails}/>
+
+            <Route path='/donors' component={DonorsList}/>
+            <Route path='/donor/:id' component={DonorDetails} />
             
           </Switch>
         </Router>
 
 
 
-
->>>>>>> 19025917743b6394a88e35fac43ae1f18e25c434
       </div>
     </Provider>
 
