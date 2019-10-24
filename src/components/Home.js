@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
     const donors = []; 
     console.log(state)
     return {
-        username: state.credentials.username,
+        username: state.username,
         campaigns: state.organization.campaigns,
         donors:state.organization.campaigns.map(campaign => donors.push(campaign.donors))
     }

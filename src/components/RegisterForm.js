@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux'; 
@@ -8,8 +8,7 @@ import { connect } from 'react-redux';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 
-//axios to make a request to register a new user
-import { axiosWithAuth } from '../utils/axiosWithAuth'; 
+import { signup } from '../actions'
 
 //components to build form
 import userIcon from '../images/user.png';
@@ -151,29 +150,21 @@ const FormikRegisterForm = withFormik({
     */
   }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
     resetForm();
 
     // console.log("In the handleSubmit function and values is: ",values);
     setStatus(values);
+    console.log("props:", props)
 
     //axios POST request to backend
     //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
-    console.log("values:", values)
-    axiosWithAuth()
-    .post('auth/register/', values)
-    .then(
-      r =>{ 
-        console.log(r.data)
-        localStorage.setItem('token', r.data.token)
-      }
-    ).catch(
-      error => console.log(error.data)
-    )
+   props.signup(values)
+   props.history.push('/home')
 
   },
   
   
 })(RegisterForm); 
   
-export default FormikRegisterForm;
+export default connect(null, { signup })(FormikRegisterForm);

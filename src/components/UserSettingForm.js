@@ -34,14 +34,14 @@ const UserSettingForm = ({values,errors,touched,status}) => {
       {/* <FormCtrDiv> */}
         <StyledForm>
           <TextIn 
-            fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
+            fieldName="username" fieldType="text" fieldPlaceHolder="username" 
             iconImg={userIcon} imgTxt="User Icon"
-            touched={touched.userName} errors={errors.userName}
+            touched={touched.username} errors={errors.username}
           />
           <TextIn 
-            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            fieldName="password" fieldType="password" fieldPlaceHolder="Password" 
             iconImg={lockIcon} imgTxt="Password Icon"
-            touched={touched.passwd} errors={errors.passwd}
+            touched={touched.password} errors={errors.password}
           />
           
           <SubmitBtn textDisplay={"Delete"}/>
@@ -57,8 +57,8 @@ const UserSettingForm = ({values,errors,touched,status}) => {
 
       {/* The following code is for testing purposes only */}
       {/* comment out in customer version of the code */}
-      <p>{`The user name is: ${data.userName}`}</p>
-      <p>{`The password is: ${data.passwd}`}</p>
+      <p>{`The user name is: ${data.username}`}</p>
+      <p>{`The password is: ${data.password}`}</p>
      
 
     </>

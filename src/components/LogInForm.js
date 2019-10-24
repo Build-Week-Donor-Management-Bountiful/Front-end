@@ -39,15 +39,7 @@ const StyledLink = styled(Link)`
 `;
 
 
-const mapStateToProps = state => {
-    return {
-      id: state.id, 
-      username: state.username,
-      password: state.password, 
-      organization: state.organization.name
 
-    }
-}
 
 
 
@@ -111,7 +103,6 @@ const FormikLogInForm = withFormik({
     return {
       username: username || "",
       password: password || "",
-      login: login
     };
   },
 
@@ -126,24 +117,13 @@ const FormikLogInForm = withFormik({
     
     setStatus(values);
 
-    const user = {username: values.username, password: values.password}
     //logs user in with the credentials entered using axios.post
-    axiosWithAuth()
-    .post('/auth/login/', user)
-    .then(
-      r => {
-        
-        localStorage.setItem('token', r.data.token);
-
-        values.login(user)
-        props.history.push("/home")
-        console.log(values)
-      }
-    ).catch(error => console.log(error))
+    props.login(values)
+    props.history.push('/home')
     
   },
   
   
 })(LogInForm); 
   
-export default connect(mapStateToProps, { login })(FormikLogInForm)
+export default connect(null, { login })(FormikLogInForm)

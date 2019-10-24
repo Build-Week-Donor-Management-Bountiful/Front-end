@@ -41,4 +41,4 @@ const CampaignList = props => {
     )
 }
 
-export default connect(mapStateToProps, { login })(CampaignList); 
+export default connect(mapStateToProps, { })(CampaignList); 

@@ -6,10 +6,7 @@ const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 
 const initial = {
     id: 0, 
-    credentials: {
-        username: '', 
-        password: ''
-    }, 
+    username:"", 
     isFetching: false, 
     error: " ",
     organization: {
@@ -115,21 +112,18 @@ const reducer = (state = initial, action) => {
                 ...state,  
                 isFetching: true, 
                 error: '...Logging In', 
-                credentials:{
-                    username: action.payload.username, 
-                    password: action.payload.password, 
-                },
+                id: action.payload,
                 
-                id: action.payload.id
             }
         case SIGNUP: 
             return {
                 ...state, 
                 isFetching: true, 
                 error: '...Creating Your Account', 
+                id: action.payload.id,
                 username: action.payload.username, 
-                password: action.payload.password, 
-                id: action.payload.id
+                    
+                
             }
         case ADD_DONOR: 
             return {
@@ -158,20 +152,24 @@ const reducer = (state = initial, action) => {
             return {
                 ...state, 
                 isFetching: true, 
-               credentials: {
-                    username: action.payload.username, 
-                    password: action.payload.password
-                }
+                username: action.payload.username
+                
             }
         
         case DELETE_USER: 
             return {
                 ...state, 
                 isFetching: true, 
-                credentials: {
-                    username: '', 
-                    password: ''
-                }
+                username: '', 
+                
+            }
+        
+
+        case UPDATE_USER: 
+            return {
+                ...state, 
+                username: action.payload, 
+                password: action.payload
             }
         default: 
             return state; 
