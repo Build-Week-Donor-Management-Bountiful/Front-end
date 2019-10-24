@@ -2,13 +2,14 @@ import React from 'react';
 import DonorsList from './DonorsList'; 
 import { connect } from 'react-redux'; 
 
-
+//Helper functions that matches what ever value I need from state to props  
 const mapStateToProps = state => {
     return {
-        campaigns: state.campaigns, 
+        campaigns: state.campaigns,
         donors: state.donors
     }
 }
+
 const CampaignDetails = props => {
     const campaign = props.campaigns.find(campaign => campaign.id === Number(props.match.params.id)); 
     const campaign_donors = props.donors.filter(donor => donor.campaign === campaign.name); 
@@ -29,8 +30,10 @@ const CampaignDetails = props => {
                     <button className="details">Details</button>
                 </div>
             ))}
+
         </div>
-    )
+
+    );
 }
 
 export default connect(mapStateToProps, {})(CampaignDetails)

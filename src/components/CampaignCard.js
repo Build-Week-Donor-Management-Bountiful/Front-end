@@ -8,8 +8,11 @@ const CampaignCard = props => {
             <h3>{props.name}</h3>
             <p>{props.mission}</p>
             <p>Funding Goal: {props.goal}</p>
-            
-            <Link to={`/campaign/${props.id}`}><button href="#">More Details</button></Link>
+            <p>Money Rasied: {props.raised}</p>
+
+            <Link to={`campaign/${props.id}`}><button >More Details</button></Link>
+
+
         </div>
     )
 }

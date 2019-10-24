@@ -14,6 +14,7 @@ import Home from './components/Home';
 import CampaignList from './components/CampaignList'; 
 import CampaignDetails from './components/CampaignDetails'; 
 
+import DonorsList from './components/DonorsList'; 
 import DonorDetails from './components/DonorDetails'; 
 import AddDonorPage from './components/AddDonorPage'; 
 
@@ -21,7 +22,10 @@ import LoginPage from './components/LogInForm';
 import RegisterPage from './components/RegisterPage'; 
 import EditDonorPage from './components/EditDonorPage'; 
 import EditCampaignPage from './components/EditCampaignPage'; 
+import AddCampaignPage from './components/AddCampaignPage'; 
 import UserSettingPage from './components/UserSettingPage'; 
+import Header from './components/Header'; 
+
 
 
 
@@ -46,29 +50,39 @@ function App() {
 
   return (
 
+
     <Provider store={store}>
       <div className="App">
 
 
-        <Router >
+
+        <Router>
           <Switch>
             <Route exact path="/" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
 
+            {/* <Route path="/editDonor/:id" component={EditDonorPage}/>
+            <Route path="/adddonor" component={AddDonorPage}/> */}
+
+            <Route path="/editCampaign" component={EditCampaignPage}/>
+            <Route path="/addCampaign" component={AddCampaignPage}/>
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
             <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
-            <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
+            {/* <PrivateRoute path="/editCampaign" component={EditCampaignPage}/> */}
             <PrivateRoute path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
             <PrivateRoute path='/home' component={Home}/>
-            <PrivateRoute path='/campaigns' component={CampaignList}/>
-            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-            <PrivateRoute path='/donor/:id' component={DonorDetails} />
+
+
+            <Route path='/campaigns' component={CampaignList}/>
+            <Route path='/campaign/:id' component={CampaignDetails}/>
+
+            <Route path='/donors' component={DonorsList}/>
+            <Route path='/donor/:id' component={DonorDetails} />
             
           </Switch>
         </Router>
-
 
 
 

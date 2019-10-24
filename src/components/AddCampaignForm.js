@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
   font-family: 'Muli', sans-serif;
 `;
 
-const EditCampaignForm = (props) => {
+const AddCampaignForm = (props) => {
   const {values,errors,touched,status} = props;
   const [data, setData] = useState({});
   
@@ -82,7 +82,7 @@ const EditCampaignForm = (props) => {
 
           
 
-          <SubmitBtn textDisplay={"UpdateInformation"}/>
+          <SubmitBtn textDisplay={"AddCampaign"}/>
           <RegisDiv>
             <p>
               Or back to Donor List
@@ -108,11 +108,11 @@ const EditCampaignForm = (props) => {
   );
     
  
- } //End of EditCampaignForm function
+ } //End of AddCampaignForm function
  
  
  
-const FormikEditCampaignForm = withFormik({
+const FormikAddCampaignForm = withFormik({
   
   mapPropsToValues({ name, mission, goal }) {
     return {
@@ -140,6 +140,6 @@ const FormikEditCampaignForm = withFormik({
   },
   
   
-})(EditCampaignForm); 
+})(AddCampaignForm); 
   
-export default FormikEditCampaignForm;
+export default FormikAddCampaignForm;
