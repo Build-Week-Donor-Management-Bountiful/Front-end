@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Link } from 'react-router-dom'; 
 
 const CampaignCard = props => {
     return(
@@ -8,7 +9,10 @@ const CampaignCard = props => {
             <p>{props.mission}</p>
             <p>Funding Goal: {props.goal}</p>
             <p>Money Rasied: {props.raised}</p>
-            <button href="#">More Details</button>
+
+            <Link to={`campaign/${props.id}`}><button >More Details</button></Link>
+
+
         </div>
     )
 }
