@@ -59,7 +59,7 @@ function App() {
 
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-            <PrivateRoute path="/editDonor" component={EditDonorPage}/>
+            <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
             <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
             <PrivateRoute path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>

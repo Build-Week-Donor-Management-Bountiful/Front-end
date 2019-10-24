@@ -73,6 +73,12 @@ const AddDonorForm = ({values,errors,touched,status}) => {
             iconImg={phoneIcon} imgTxt="Phone Icon"
             touched={touched.amount} errors={errors.amount}
           />
+
+          <TextIn 
+            fieldName="date" fieldType="text" fieldPlaceHolder="Last contacted" 
+            iconImg={phoneIcon} imgTxt="Phone Icon"
+            touched={touched.date} errors={errors.date}
+          />  
         <SubmitBtn textDisplay={"AddDonor"}/>
           <RegisDiv>
             <p>
@@ -104,13 +110,14 @@ const AddDonorForm = ({values,errors,touched,status}) => {
  
 const FormikAddDonorForm = withFormik({
   
-  mapPropsToValues({ name, email, phone, campaign, amount}) {
+  mapPropsToValues({ name, email, phone, campaign, amount, date}) {
     return {
       name: name || "",
       email: email || "",
       phone: phone || "",
       campaign: campaign || '', 
-      amount: amount || ''
+      amount: amount || '', 
+      date: date || ''
 
     };
   },
@@ -120,7 +127,8 @@ const FormikAddDonorForm = withFormik({
     email: Yup.string().required("Please input donor's email address").email("Please enter a valid email"),
     phone: Yup.string().required("Please input donor's phone number"),
     campaign: Yup.string().required("Please input campaign"),
-    amount: Yup.number().required("Please input amount donated")
+    amount: Yup.number().required("Please input amount donated"),
+    date: Yup.string().required("Please input date")
 
   }),
   

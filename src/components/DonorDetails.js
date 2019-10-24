@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'; 
 
 
@@ -13,7 +14,7 @@ const DonorDetails = props => {
    
     
 
-    
+
     const donor = props.donors.find(donor => donor.id === Number(props.match.params.id))
     console.log(donor)
     return (
@@ -22,7 +23,7 @@ const DonorDetails = props => {
             <p>Email: {donor.email}</p>
             <p>Telephone: {donor.phone}</p>
             <p>Last Communication: {donor.date}</p>
-            <button href="#">Update Donor Details</button>
+            <Link to={`/editDonor/${donor.id}`}><button href="#">Update Donor Details</button></Link>
         </div>
     )
 }
