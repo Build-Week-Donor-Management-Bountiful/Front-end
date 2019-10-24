@@ -1,7 +1,6 @@
 import React from 'react'; 
-import { Link } from 'react-router-dom';
+import DonorsList from './DonorsList'; 
 import { connect } from 'react-redux'; 
-import { login } from '../actions'
 
 //Helper functions that matches what ever value I need from state to props  
 const mapStateToProps = state => {
@@ -14,6 +13,7 @@ const mapStateToProps = state => {
 const CampaignDetails = props => {
     
     const campaign = props.campaigns.find(cpn => cpn.id === Number(props.match.params.id))
+
 
     return (
         <div className="details">
@@ -34,7 +34,7 @@ const CampaignDetails = props => {
     );
 }
 
-export default connect(mapStateToProps, { login })(CampaignDetails); 
+export default connect(mapStateToProps, { })(CampaignDetails); 
 
 
 
