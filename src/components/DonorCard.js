@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'; 
+import { Link, Redirect } from 'react-router-dom'; 
 
 /*
 * A card for each donor in list that shows donor name as "name", date donor was last contacted as "date"
@@ -12,7 +12,7 @@ const DonorCard = props =>
         <div className="donor">
             <h4>{props.name}</h4>
             <p>{props.date}</p>
-            <button className="details" onClick={() => {console.log('clicked');}}>Details</button>
+           <Link to={`donor/${props.id}`}><button className="details">Details</button></Link>
         </div>
     )
 }

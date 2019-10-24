@@ -28,6 +28,7 @@ import UserSettingPage from './components/UserSettingPage';
 
 
 
+
 //redux
 import { Provider } from 'react-redux'; 
 import { createStore, applyMiddleware } from 'redux'; 
@@ -50,22 +51,28 @@ function App() {
     <Provider store={store}>
       <div className="App">
 
-        <Switch>
-          <Route exact path="/" component={LoginPage}/>
-          <Route path="/register" component={RegisterPage}/>
+
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LoginPage}/>
+            <Route path="/register" component={RegisterPage}/>
 
 
-          {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-          <Route path="/editDonor" component={EditDonorPage}/>
-          <Route path="/editCampaign" component={EditCampaignPage}/>
-          <Route path="/userSetting" component={UserSettingPage}/>
-          <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
-          <PrivateRoute path='/home' component={Home}/>
-          <PrivateRoute path='/campaigns' component={CampaignList}/>
-          <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-          <PrivateRoute path='/donor/:id' component={DonorDetails} />
-          
-        </Switch>
+            {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
+            <Route path="/editDonor" component={EditDonorPage}/>
+            <Route path="/editCampaign" component={EditCampaignPage}/>
+            <Route path="/userSetting" component={UserSettingPage}/>
+            <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
+            <PrivateRoute path='/home' component={Home}/>
+            <PrivateRoute path='/campaigns' component={CampaignList}/>
+            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
+            <PrivateRoute path='/donor/:id' component={DonorDetails} />
+            
+          </Switch>
+        </Router>
+
+
+
 
       </div>
     </Provider>
