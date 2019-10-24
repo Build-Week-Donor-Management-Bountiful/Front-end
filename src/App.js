@@ -22,6 +22,8 @@ import RegisterPage from './components/RegisterPage';
 import EditDonorPage from './components/EditDonorPage'; 
 import EditCampaignPage from './components/EditCampaignPage'; 
 import UserSettingPage from './components/UserSettingPage'; 
+import Header from './components/Header'; 
+
 
 
 
@@ -45,8 +47,12 @@ function App() {
 
   return (
 
+
     <Provider store={store}>
       <div className="App">
+
+        <Header />
+
         <Switch>
           <Route exact path="/" component={LoginPage}/>
           <Route path="/register" component={RegisterPage}/>
