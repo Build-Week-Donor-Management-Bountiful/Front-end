@@ -19,8 +19,8 @@ const mapStateToProps = (state) => {
     
     return {
         username: state.username,
-        campaigns: state.organization.campaigns,
-        donors:state.organization.campaigns.map(campaign => donors.push(campaign.donors))
+        campaigns: state.campaigns,
+        donors:state.donors
     }
 
 }
