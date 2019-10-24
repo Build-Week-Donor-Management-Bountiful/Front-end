@@ -20,6 +20,21 @@ export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL';
 
 
+export const addDonor = donor => {
+    return {
+        type: ADD_DONOR, 
+        payload: donor
+    }
+}
+
+export const createCampaign = campaign => {
+    return {
+        type: CREATE_CAMPAIGN, 
+        payload: campaign
+    }
+}
+
+/*******************CRUD********************/
 export const login = (values) => (dispatch) => {
     const data = values; 
    
@@ -50,7 +65,7 @@ export const signup = values => dispatch => {
 }
 export const getUser = () => dispatch => {
     axiosWithAuth()
-    .get(`users/user`)
+    .get(`users/${id}`)
     .then(r =>{console.log(r.data); dispatch({type: GET_USER, payload: r.data})})
     .catch(error => { console.log(error); dispatch({ type: FETCH_FAIL, payload: error.response})}); 
 }

@@ -10,8 +10,7 @@ import {axiosWithAuth }from '../utils/axiosWithAuth'
 
 const mapStateToProps = state => {
     return {
-        credentials: state.credentials, 
-        campaigns: state.organization.campaigns
+        campaigns: state.campaigns
     }
 }
 
@@ -26,7 +25,6 @@ const CampaignList = props => {
     */
 
     
-    console.log(props.credentials)
 
 
     return (

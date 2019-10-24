@@ -86,6 +86,16 @@ const initial = {
             phone: '555-555-55',
             amount: 20000, 
             date: '1/05/19'
+        },
+
+        {
+            id: Math.random(), 
+            name: 'thomas matt',
+            email: 'kajfs@femail.com',
+            campaign: "Help Build More Shelters", 
+            phone: '555-555-55',
+            amount: 20000, 
+            date: '1/05/19'
         }
 
        
