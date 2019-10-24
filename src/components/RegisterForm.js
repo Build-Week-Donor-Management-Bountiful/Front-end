@@ -159,7 +159,7 @@ const FormikRegisterForm = withFormik({
 
     //axios POST request to backend
     //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
-   props.signup(values)
+    props.signup(values)
     props.history.push('/home')
 
   },

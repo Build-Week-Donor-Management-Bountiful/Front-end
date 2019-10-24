@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'; 
 
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 //components
 import DonorsList from './DonorsList'
 import Nav from './Nav'; 
@@ -39,7 +39,7 @@ const Home = props => {
 
                 <div className="donor-filter">
             
-                   <button>+ new donor</button>
+                   <Link to='/adddonor'><button>+ new donor</button></Link>
                 
                 </div>
 
