@@ -21,13 +21,13 @@ const CampaignDetails = props => {
         <div className="details">
            <h2>{campaign.name}</h2>
             <img src="" alt={`${campaign.name}'s campaign photo`} />
-            <p>Goal: {campaign.goal}</p>
-            <p>Money Raised: {money_raised}</p>
+            <p>Goal: ${campaign.goal}</p>
+            <p>Money Raised: ${money_raised}</p>
             {campaign_donors.map( donor => (
                 <div className="donor" key={donor.id}>
                     <h4>{donor.name}</h4>
                     <p>{donor.date}</p>
-                    <button className="details">Details</button>
+                    
                 </div>
             ))}
 

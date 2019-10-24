@@ -18,7 +18,7 @@ export const GET_USER = "GET_USER";
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL';
 
- 
+const id = localStorage.getItem('id')
 
 export const addDonor = donor => {
     return {
@@ -34,8 +34,9 @@ export const createCampaign = campaign => {
     }
 }
 
+
 /*******************CRUD********************/
-export const login = (values) => (dispatch) => {
+export const login = (values, history) => (dispatch) => {
     const data = values; 
    
     axiosWithAuth()
@@ -45,11 +46,12 @@ export const login = (values) => (dispatch) => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.id)
         dispatch({type: LOGIN, payload:{username: values.username, id: r.data.id} })
+        history.push('/home')
         
     })
     .catch(error => error)
 }
-export const signup = values => dispatch => {
+export const signup = (values, history) => dispatch => {
     axiosWithAuth()
     .post('auth/register/', values)
     .then(
@@ -58,6 +60,7 @@ export const signup = values => dispatch => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.user.id)
         dispatch({type: SIGNUP, payload: r.data.user })
+        history.push('/home')
         
       }
     ).catch(
@@ -72,7 +75,7 @@ export const getUser = () => dispatch => {
     .catch(error => { console.log(error); dispatch({ type: FETCH_FAIL, payload: error.response})}); 
 }
 
-const id = localStorage.getItem('id')
+
 
 export const updateUser = (values) => dispatch => {
     

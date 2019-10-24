@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'; 
 import { login } from '../actions'
 import CampaignCard from './CampaignCard'
@@ -32,6 +33,7 @@ const CampaignList = props => {
 
         <div className="campaign-list">
             <Nav/>
+            <Link to={`/addCampaign`}>Add Campaign</Link>
             <h2>Your Campaigns</h2>
             <div className="campaigns">
                 {props.campaigns.map( campaign => 
