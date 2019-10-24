@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link , withRouter } from 'react-router-dom';
 import { Form, withFormik } from "formik";
+
+
 import * as Yup from "yup";
 
 //redux
@@ -116,12 +118,14 @@ const FormikLogInForm = withFormik({
 
     // console.log("In the handleSubmit function and values is: ",values);
     setStatus(values);
-    
-
+   
+      
     //axios POST request to backend
     //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
     props.login(values)
-    props.history.push('/home')
+    
+    
+   
 
   },
   
