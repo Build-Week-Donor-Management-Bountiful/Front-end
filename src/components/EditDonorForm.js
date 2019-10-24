@@ -8,11 +8,12 @@ import userIcon from '../images/user.png';
 import phoneIcon from '../images/phoneHeadset.png';
 import mailIcon from '../images/mail.png';
 import cashIcon from '../images/cash.png';
+import sunnyIcon from '../images/sunny.png';
 
 import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
 import DateSet from './DateSet';
-import CommMeth from './CommMeth';
+// import CommMeth from './CommMeth';
 
 const FormCtrDiv = styled.div`
   margin-top:50px;
@@ -35,21 +36,28 @@ const StyledLink = styled(Link)`
 `;
 
 // const backendServerUp = true;
-const backendServerUp = false;
+// const backendServerUp = false;
 
-function getServerData() {
+// function getServerData() {
+//   if(backendServerUp) {
+//     return {
+//       srvDonorId : "101",
+//       srvDonorName : "Chandler Bing",
+//       srvDonorEmail : "cb@yahoo.com",
+//       srvDonorPhoneNo : "123",
+//       srvLastCommDate : "03/09/2018",
+//       srvLastCommMeth : "phone",      
+//     };
+//   }
+// }
 
-  if(backendServerUp) {
-    return {
-      srvDonorId : "101",
-      srvDonorName : "Chandler Bing",
-      srvDonorEmail : "cb@yahoo.com",
-      srvDonorPhoneNo : "123",
-      srvLastCommDate : "03-09-2018",
-      srvLastCommMeth : "phone",      
-    };
-  }
+function dateObjToStr(date) {
+  
+  let dateString = (date.getMonth()+1)<10 ? "0"+(date.getMonth()+1) : ""+(date.getMonth()+1);
+  dateString = dateString + "/" + (date.getDate()<10 ? "0"+date.getDate() : date.getDate());
+  dateString = dateString + "/" + date.getFullYear();
 
+  return dateString;
 }
 
 
@@ -59,11 +67,8 @@ const EditDonorForm = (props) => {
   
   useEffect(() => {
     if(status) {
-      let date = status.dateState;
-
-      let dateString = (date.getMonth()+1)<10 ? "0"+(date.getMonth()+1) : ""+(date.getMonth()+1);
-      dateString = dateString + "-" + (date.getDate()<10 ? "0"+date.getDate() : date.getDate());
-      dateString = dateString + "-" + date.getFullYear();
+      let dateString = dateObjToStr(status.date);
+      
 
       setData({ 
         ...data, 
@@ -75,33 +80,33 @@ const EditDonorForm = (props) => {
   }, [status]);
 
 
-  useEffect(() => {
-    let response = getServerData();
+  // useEffect(() => {
+  //   let response = getServerData();
 
-    if(response) {
-      setFieldValue("donorId",response.srvDonorId,false);
-      setFieldValue("donorName",response.srvDonorName,false);
-      setFieldValue("email",response.srvDonorEmail,false);
-      setFieldValue("phoneNo",response.srvDonorPhoneNo,false);
-      setFieldValue("commMeth",response.srvLastCommMeth,false);
+  //   if(response) {
+  //     setFieldValue("donorId",response.srvDonorId,false);
+  //     setFieldValue("donorName",response.srvDonorName,false);
+  //     setFieldValue("email",response.srvDonorEmail,false);
+  //     setFieldValue("phoneNo",response.srvDonorPhoneNo,false);
+  //     setFieldValue("commMeth",response.srvLastCommMeth,false);
 
-      let year =  response.srvLastCommDate.slice(6);
-      let month = parseInt(response.srvLastCommDate.slice(0,2))-1;
-      let day = response.srvLastCommDate.slice(3,5)
-      let dateObj = new Date(year,month,day);
-      setFieldValue("dateState",dateObj,false);
-    }
-  }, []);
+  //     let year =  response.srvLastCommDate.slice(6);
+  //     let month = parseInt(response.srvLastCommDate.slice(0,2))-1;
+  //     let day = response.srvLastCommDate.slice(3,5)
+  //     let dateObj = new Date(year,month,day);
+  //     setFieldValue("dateState",dateObj,false);
+  //   }
+  // }, []);
 
   function handleDateChange(date) {
     if(date) {
       
-      setFieldValue("dateState",date,true);
-      setFieldTouched("dateState",true,true);
+      setFieldValue("date",date,true);
+      setFieldTouched("date",true,true);
 
     } else {
 
-      setFieldValue("dateState","",true);
+      setFieldValue("date","",true);
 
     }
     
@@ -116,19 +121,22 @@ const EditDonorForm = (props) => {
 
   return (
     <>
+
+      <h1>This is EditDonorForm</h1>
+
       <FormCtrDiv>
         <Form>
 
-          <TextIn 
+          {/* <TextIn 
             fieldName="donorId" fieldType="text" fieldPlaceHolder="DonorID" 
             iconImg={userIcon} imgTxt="Donor Icon"
             touched={touched.donorId} errors={errors.donorId}
-          />
+          /> */}
 
           <TextIn 
-            fieldName="donorName" fieldType="text" fieldPlaceHolder="DonorName" 
+            fieldName="name" fieldType="text" fieldPlaceHolder="DonorName" 
             iconImg={userIcon} imgTxt="Donor Icon"
-            touched={touched.donorName} errors={errors.donorName}
+            touched={touched.name} errors={errors.name}
           />
 
           <TextIn 
@@ -138,22 +146,28 @@ const EditDonorForm = (props) => {
           />
 
           <TextIn 
-            fieldName="phoneNo" fieldType="text" fieldPlaceHolder="DonorPhoneNo" 
+            fieldName="phone" fieldType="text" fieldPlaceHolder="DonorPhoneNo" 
             iconImg={phoneIcon} imgTxt="Phone Icon"
-            touched={touched.phoneNo} errors={errors.phoneNo}
+            touched={touched.phone} errors={errors.phone}
+          />
+
+          <TextIn 
+            fieldName="campaign" fieldType="text" fieldPlaceHolder="CampaignDonatedTo" 
+            iconImg={sunnyIcon} imgTxt="Campaign Icon"
+            touched={touched.campaign} errors={errors.campaign}
+          />
+
+          <TextIn 
+            fieldName="amount" fieldType="text" fieldPlaceHolder="DonationAmount" 
+            iconImg={cashIcon} imgTxt="Cash Icon"
+            touched={touched.amount} errors={errors.amount}
           />
 
           {/* This is for last communication date */}
-          <DateSet date={values.dateState} handleDateChange={handleDateChange} errors={errors.dateState} touched={touched.dateState}/>
+          <DateSet date={values.date} handleDateChange={handleDateChange} errors={errors.date} touched={touched.date}/>
 
           {/* This is for last communication method */}
-          <CommMeth  fieldName="commMeth" touched={touched.commMeth} errors={errors.commMeth} />
-
-          <TextIn 
-            fieldName="moneyGiven" fieldType="text" fieldPlaceHolder="NewMoneyDonated" 
-            iconImg={cashIcon} imgTxt="Donor Icon"
-            touched={touched.moneyGiven} errors={errors.moneyGiven}
-          />
+          {/* <CommMeth  fieldName="commMeth" touched={touched.commMeth} errors={errors.commMeth} /> */}
 
           <SubmitBtn textDisplay={"UpdateInformation"}/>
           <RegisDiv>
@@ -171,13 +185,12 @@ const EditDonorForm = (props) => {
 
       {/* The following code is for testing purposes only */}
       {/* comment out in customer version of the code */}
-      <p>{`The donor ID is: ${data.donorId}`}</p>
-      <p>{`The donor name is: ${data.donorName}`}</p>
+      <p>{`The donor name is: ${data.name}`}</p>
       <p>{`The email address is: ${data.email}`}</p>
-      <p>{`The phone number is: ${data.phoneNo}`}</p>
-      <p>{`The date is: ${data.dateString}`}</p>
-      <p>{`The donor communication method is: ${data.commMeth}`}</p>
-      <p>{`The new donation amount: ${data.moneyGiven}`}</p>
+      <p>{`The phone number is: ${data.phone}`}</p>
+      <p>{`The campaign is: ${data.campaign}`}</p>
+      <p>{`The new donation amount: ${data.amount}`}</p>
+      <p>{`The date is: ${data.date?dateObjToStr(data.date):"noOneHere"}`}</p>
 
     </>
 
@@ -190,36 +203,38 @@ const EditDonorForm = (props) => {
  
 const FormikEditDonorForm = withFormik({
   
-  mapPropsToValues({ donorId, donorName, email, phoneNo, commMeth, dateState, moneyGiven }) {
+  mapPropsToValues({ name, email, phone, campaign, amount, date }) {
     return {
-      donorId: donorId || "",
-      donorName: donorName || "",
+      // donorId: donorId || "",
+      name: name || "",
       email: email || "",
-      phoneNo: phoneNo || "",
-      commMeth: commMeth || "",
-      dateState: dateState || "",
-      moneyGiven: moneyGiven || "",
+      phone: phone || "",
+      campaign: campaign || "",
+      amount: amount || "",
+      date: date || "",
+      
     };
   },
 
   validationSchema: Yup.object().shape({
-    donorId: Yup.number().required("Please input donor's id number").typeError("Please input only digits not other chars").integer("Please input only digits not other chars"),
-    donorName: Yup.string().required("Please input a donor name"),
+    // donorId: Yup.number().required("Please input donor's id number").typeError("Please input only digits not other chars").integer("Please input only digits not other chars"),
+    name: Yup.string().required("Please input a donor name"),
     email: Yup.string().required("Please input donor's email address").email("Please enter a valid email"),
-    phoneNo: Yup.number().required("Please input donor's phone number").typeError("Please input only digits not other chars")
-      .min(111,"Please input a 3 digit phone number").max(999,"Please input a 3 digit phone number").integer("Please input only digits not other chars"),
-    commMeth: Yup.string().oneOf(["email", "phone"],"Please choose communication method").required("Please choose communication method"),
-    dateState: Yup.mixed().required("Please set a date"),
-    moneyGiven: Yup.number().required("Please input new donation amount").typeError("Please input only digits not other chars"),
+    phone: Yup.number().required("Please input donor's phone number").typeError("Please input only digits not other chars"),
+    // commMeth: Yup.string().oneOf(["email", "phone"],"Please choose communication method").required("Please choose communication method"),
+    campaign: Yup.string().required("Please input a campaign name"),
+    amount: Yup.number().required("Please input new donation amount").typeError("Please input only digits not other chars"),
+    date: Yup.mixed().required("Please set a date"),
+    
   }),
   
-  handleSubmit(values, { setStatus, setFieldError, resetForm }) {
+  handleSubmit(values, { props, setStatus, setFieldError, resetForm }) {
 
     resetForm();
     setStatus(values);
-
-    //I don't need the if statements here, as it seems Formik will not execute handleSubmit until
-    //touched is true and there are no errors
+    console.log({id: Math.random(), ...values, date:dateObjToStr(values.date)})
+    // props.addDonor({id: Math.random(), ...values, date:dateObjToStr(values.date)});
+    
     
   },
   

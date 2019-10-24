@@ -62,6 +62,8 @@ function App() {
             <Route exact path="/" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
 
+            {/* <Route path="/editDonor/:id" component={EditDonorPage}/>
+            <Route path="/adddonor" component={AddDonorPage}/> */}
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
             <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
