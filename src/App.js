@@ -15,6 +15,7 @@ import Home from './components/Home';
 import CampaignList from './components/CampaignList'; 
 import CampaignDetails from './components/CampaignDetails'; 
 
+import DonorsList from './components/DonorsList'; 
 import DonorDetails from './components/DonorDetails'; 
 import AddDonorPage from './components/AddDonorPage'; 
 
@@ -23,6 +24,8 @@ import RegisterPage from './components/RegisterPage';
 import EditDonorPage from './components/EditDonorPage'; 
 import EditCampaignPage from './components/EditCampaignPage'; 
 import UserSettingPage from './components/UserSettingPage'; 
+import Header from './components/Header'; 
+
 
 
 
@@ -48,8 +51,10 @@ function App() {
 
   return (
 
+
     <Provider store={store}>
       <div className="App">
+
 
 
         <Router>
@@ -59,18 +64,21 @@ function App() {
 
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-            <Route path="/editDonor" component={EditDonorPage}/>
-            <Route path="/editCampaign" component={EditCampaignPage}/>
-            <Route path="/userSetting" component={UserSettingPage}/>
+            <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
+            <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
+            <PrivateRoute path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
             <PrivateRoute path='/home' component={Home}/>
-            <PrivateRoute path='/campaigns' component={CampaignList}/>
-            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
-            <PrivateRoute path='/donor/:id' component={DonorDetails} />
+
+
+            <Route path='/campaigns' component={CampaignList}/>
+            <Route path='/campaign/:id' component={CampaignDetails}/>
+
+            <Route path='/donors' component={DonorsList}/>
+            <Route path='/donor/:id' component={DonorDetails} />
             
           </Switch>
         </Router>
-
 
 
 

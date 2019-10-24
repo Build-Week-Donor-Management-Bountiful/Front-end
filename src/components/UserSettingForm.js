@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, withFormik } from "formik";
+import { Link, withRouter } from 'react-router-dom';
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
@@ -9,6 +9,10 @@ import lockIcon from '../images/lock.png';
 
 import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
+
+//redux
+import { connect } from 'react-redux'; 
+import { updateUser, deleteUser } from '../actions'
 
 const StyledForm = styled(Form)`
   margin-top:50px;
@@ -27,6 +31,7 @@ const UserSettingForm = ({values,errors,touched,status}) => {
   const [data, setData] = useState({});
   useEffect(() => {
     status && setData(status);
+    
   }, [status]);
 
   return (
@@ -34,32 +39,39 @@ const UserSettingForm = ({values,errors,touched,status}) => {
       {/* <FormCtrDiv> */}
         <StyledForm>
           <TextIn 
-            fieldName="userName" fieldType="text" fieldPlaceHolder="UserName" 
+            fieldName="username" fieldType="text" fieldPlaceHolder="username" 
             iconImg={userIcon} imgTxt="User Icon"
-            touched={touched.userName} errors={errors.userName}
+            touched={touched.username} errors={errors.username}
           />
           <TextIn 
-            fieldName="passwd" fieldType="password" fieldPlaceHolder="Password" 
+            fieldName="password" fieldType="password" fieldPlaceHolder="Password" 
             iconImg={lockIcon} imgTxt="Password Icon"
-            touched={touched.passwd} errors={errors.passwd}
+            touched={touched.password} errors={errors.password}
           />
           
-          <SubmitBtn textDisplay={"Delete"}/>
 
-          <SpaceDiv></SpaceDiv>
-
-          <SubmitBtn textDisplay={"UpdateAccount"}/>
+          <label>
+            Delete my account: 
+            <Field
+              type="checkbox"
+              name="remove"
+              checked={values.remove}
+            />
+          </label>
+          <SubmitBtn textDisplay={"Submit"}/>
+          
+          
           
         </StyledForm>
         
       {/* </FormCtrDiv> */}
 
 
-      {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
-      <p>{`The user name is: ${data.userName}`}</p>
-      <p>{`The password is: ${data.passwd}`}</p>
+      {/* The following code is for testing purposes only 
      
+      <p>{`The user name is: ${data.username}`}</p>
+      <p>{`The password is: ${data.password}`}</p>
+     */}
 
     </>
 
@@ -72,25 +84,35 @@ const UserSettingForm = ({values,errors,touched,status}) => {
  
 const FormikUserSettingForm = withFormik({
   
-  mapPropsToValues({ userName, passwd }) {
+  mapPropsToValues({ username, password, remove}) {
     return {
-      userName: userName || "",
-      passwd: passwd || "",
+      username: username || "",
+      password: password || "",
+      remove: remove || false 
+      
     };
   },
 
-  validationSchema: Yup.object().shape({
-    userName: Yup.string().required("Please input a user name"),
-    passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
-  }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm}) {
     resetForm();
     setStatus(values);
+
+    if (values.remove){
+      props.deleteUser()
+      props.history.push('/')
+    } else{
+    
+      props.updateUser(values)
+      props.history.push('/home')
+
+    }
+    
+    
     
   },
   
   
 })(UserSettingForm); 
   
-export default FormikUserSettingForm;
+export default withRouter(connect(null, { updateUser, deleteUser })(FormikUserSettingForm));
