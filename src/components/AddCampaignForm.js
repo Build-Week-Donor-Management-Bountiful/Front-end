@@ -4,6 +4,10 @@ import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
+//redux
+import { connect } from 'react-redux'; 
+import { createCampaign } from '../actions'
+
 import cashIcon from '../images/cash.png';
 import hammerIcon from '../images/hammer.png';
 import sunnyIcon from '../images/sunny.png';
@@ -82,12 +86,12 @@ const AddCampaignForm = (props) => {
 
           
 
-          <SubmitBtn textDisplay={"AddCampaign"}/>
+          <SubmitBtn textDisplay={"UpdateInformation"}/>
           <RegisDiv>
             <p>
-              Or back to Donor List
+              Or back to Campaign List
               <span> 
-                <StyledLink to='/' > here</StyledLink>
+                <StyledLink to='/Campaigns' > here</StyledLink>
               </span>
             </p>
           </RegisDiv>
@@ -108,7 +112,7 @@ const AddCampaignForm = (props) => {
   );
     
  
- } //End of AddCampaignForm function
+ } //End of EditCampaignForm function
  
  
  
@@ -129,17 +133,18 @@ const FormikAddCampaignForm = withFormik({
     
   }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
 
     resetForm();
     setStatus(values);
 
     //I don't need the if statements here, as it seems Formik will not execute handleSubmit until
     //touched is true and there are no errors
+    props.createCampaign({id: Math.random(), ...values});
     
   },
   
   
 })(AddCampaignForm); 
   
-export default FormikAddCampaignForm;
+export default connect(null, { createCampaign })(FormikAddCampaignForm);
