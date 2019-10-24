@@ -10,7 +10,8 @@ import {axiosWithAuth }from '../utils/axiosWithAuth'
 
 const mapStateToProps = state => {
     return {
-        campaigns: state.campaigns
+        campaigns: state.campaigns, 
+        donors: state.donors
     }
 }
 
@@ -23,7 +24,7 @@ const CampaignList = props => {
     * Each campaign will recieve details from props
     * User can click on each campaign to see campaign details
     */
-
+    
     
 
 

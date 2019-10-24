@@ -175,10 +175,22 @@ const reducer = (state = initial, action) => {
                     action.payload
                 ]
             }
+            /*
+
+            */
         case UPDATE_DONOR: 
             return {
                 ...state, 
-                error: 'Updating Donor'
+                id: Math.floor(Math.random() * Math.floor(100)), 
+                name: action.payload.name, 
+                email: action.payload.email,
+                campaign: action.payload.campaign, 
+                phone: action.payload.phone,
+                amount: Number(action.payload.amount), 
+                date: action.payload.date
+
+
+
             }
 
         case FETCH_FAIL: 

@@ -11,17 +11,19 @@ const mapStateToProps = state => {
 }
 
 const CampaignDetails = props => {
+    const campaign = props.campaigns.find(campaign => campaign.id === Number(props.match.params.id)); 
+    const campaign_donors = props.donors.filter(donor => donor.campaign === campaign.name); 
+    const money_raised = campaign_donors.reduce((prev, cur) => {
+        return prev + cur.amount;
+      }, 0);
     
-    const campaign = props.campaigns.find(cpn => cpn.id === Number(props.match.params.id))
-
-
     return (
         <div className="details">
            <h2>{campaign.name}</h2>
             <img src="" alt={`${campaign.name}'s campaign photo`} />
             <p>Goal: {campaign.goal}</p>
-            <p>Money Raised: {campaign.raised}</p>
-            {props.donors.map( donor => (
+            <p>Money Raised: {money_raised}</p>
+            {campaign_donors.map( donor => (
                 <div className="donor" key={donor.id}>
                     <h4>{donor.name}</h4>
                     <p>{donor.date}</p>
@@ -34,8 +36,4 @@ const CampaignDetails = props => {
     );
 }
 
-export default connect(mapStateToProps, { })(CampaignDetails); 
-
-
-
-
+export default connect(mapStateToProps, {})(CampaignDetails)

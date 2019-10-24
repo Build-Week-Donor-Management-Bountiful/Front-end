@@ -1,5 +1,4 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-
 //login
 export const LOGIN = 'LOGIN'; 
 //signup
@@ -19,6 +18,7 @@ export const GET_USER = "GET_USER";
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL';
 
+ 
 
 export const addDonor = donor => {
     return {
@@ -45,6 +45,7 @@ export const login = (values) => (dispatch) => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.id)
         dispatch({type: LOGIN, payload:{username: values.username, id: r.data.id} })
+        
     })
     .catch(error => error)
 }
@@ -57,6 +58,7 @@ export const signup = values => dispatch => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.user.id)
         dispatch({type: SIGNUP, payload: r.data.user })
+        
       }
     ).catch(
       error => console.log(error.data)

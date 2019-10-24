@@ -3,7 +3,6 @@ import React from 'react';
 //components for routing
 import {Route, Switch, BrowserRouter as Router } from 'react-router-dom'; 
 
-
 //will redirect user to login page if user is not logged in
 import PrivateRoute from './components/PrivateRoute'; 
 
@@ -43,7 +42,6 @@ import { logger } from 'redux-logger'
 
 //reducer 
 import rootReducer from './reducers'
-import Testing from './components/Test';
 
 
 
@@ -66,8 +64,8 @@ function App() {
             {/* <Route path="/editDonor/:id" component={EditDonorPage}/>
             <Route path="/adddonor" component={AddDonorPage}/> */}
 
-<Route path="/editCampaign" component={EditCampaignPage}/>
-<Route path="/addCampaign" component={AddCampaignPage}/>
+            <Route path="/editCampaign" component={EditCampaignPage}/>
+            <Route path="/addCampaign" component={AddCampaignPage}/>
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
             <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
