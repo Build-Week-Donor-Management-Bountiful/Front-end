@@ -59,9 +59,9 @@ function App() {
 
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
-            <Route path="/editDonor" component={EditDonorPage}/>
-            <Route path="/editCampaign" component={EditCampaignPage}/>
-            <Route path="/userSetting" component={UserSettingPage}/>
+            <PrivateRoute path="/editDonor" component={EditDonorPage}/>
+            <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
+            <PrivateRoute path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
             <PrivateRoute path='/home' component={Home}/>
             <PrivateRoute path='/campaigns' component={CampaignList}/>

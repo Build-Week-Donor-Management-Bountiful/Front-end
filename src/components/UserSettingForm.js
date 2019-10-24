@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -9,6 +9,10 @@ import lockIcon from '../images/lock.png';
 
 import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
+
+//redux
+import { connect } from 'react-redux'; 
+import { updateUser, deleteUser } from '../actions'
 
 const StyledForm = styled(Form)`
   margin-top:50px;
@@ -46,9 +50,7 @@ const UserSettingForm = ({values,errors,touched,status}) => {
           
           <SubmitBtn textDisplay={"Delete"}/>
 
-          <SpaceDiv></SpaceDiv>
-
-          <SubmitBtn textDisplay={"UpdateAccount"}/>
+          
           
         </StyledForm>
         
@@ -72,25 +74,26 @@ const UserSettingForm = ({values,errors,touched,status}) => {
  
 const FormikUserSettingForm = withFormik({
   
-  mapPropsToValues({ userName, passwd }) {
+  mapPropsToValues({ username, password }) {
     return {
-      userName: userName || "",
-      passwd: passwd || "",
+      username: username || "",
+      password: password || "",
+      
     };
   },
 
-  validationSchema: Yup.object().shape({
-    userName: Yup.string().required("Please input a user name"),
-    passwd: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
-  }),
   
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, { props, setStatus, resetForm}) {
     resetForm();
     setStatus(values);
+    props.updateUser(values)
+    props.history.push('/home')
+    
+    
     
   },
   
   
 })(UserSettingForm); 
   
-export default FormikUserSettingForm;
+export default withRouter(connect(null, { updateUser, deleteUser })(FormikUserSettingForm));

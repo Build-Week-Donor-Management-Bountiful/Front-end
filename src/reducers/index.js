@@ -19,7 +19,7 @@ const initial = {
                 mission: mission_dummy, 
                 donors: [
                     {
-                        id: 0, 
+                        id: Math.random(), 
                         name: 'John Timoth',
                         email: 'ysoserious@any.net',
                         phone: '555-907-5955',
@@ -27,7 +27,7 @@ const initial = {
                         date: '10/12/19'
                     },
                     {
-                        id: 1, 
+                        id: Math.random(), 
                         name: 'Apple Smith',
                         email: 'ApplePie978@anyd.net',
                         phone: '555-123-4555',
@@ -36,7 +36,7 @@ const initial = {
                     },
 
                     {
-                        id: 2, 
+                        id: Math.random(), 
                         name: 'Tommy Bean',
                         email: 'ttbeansinc@any.net',
                         phone: '976-555-4525',
@@ -56,18 +56,18 @@ const initial = {
                 mission: mission_dummy, 
                 donors: [
                     {
-                        id: 0, 
-                        name: 'Two Faced',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
+                        id: Math.random(), 
+                        name: 'Miley Cyrus',
+                        email: 'hm@disdneyworld.net',
+                        phone: '123-456-7890',
                         amount: 0.50, 
                         date: '10/12/19'
                     },
                     {
-                        id: 1, 
-                        name: 'Two Faced',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
+                        id: Math.random(), 
+                        name: 'Mickey Mouse',
+                        email: 'MickeyMouseClubHouse@disneyboss.com',
+                        phone: '678-453-555',
                         amount: 0.50, 
                         date: '10/12/19'
                     }
@@ -86,7 +86,7 @@ const initial = {
                 mission: mission_dummy, 
                 donors: [
                     {
-                        id:0, 
+                        id: Math.random(), 
                         name: 'Selina Kyle',
                         email: 'catsoverdogs123@femail.com',
                         phone: '555-555-55',
@@ -112,7 +112,8 @@ const reducer = (state = initial, action) => {
                 ...state,  
                 isFetching: true, 
                 error: '...Logging In', 
-                id: action.payload,
+                username: action.payload.username,
+                id: action.payload.id,
                 
             }
         case SIGNUP: 
@@ -152,7 +153,8 @@ const reducer = (state = initial, action) => {
             return {
                 ...state, 
                 isFetching: true, 
-                username: action.payload.username
+                username: action.payload.username,
+                id: action.payload.id
                 
             }
         
@@ -168,8 +170,8 @@ const reducer = (state = initial, action) => {
         case UPDATE_USER: 
             return {
                 ...state, 
-                username: action.payload, 
-                password: action.payload
+                username: action.payload.username, 
+                password: action.payload.password
             }
         default: 
             return state; 

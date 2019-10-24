@@ -21,13 +21,15 @@ export const FETCH_FAIL = 'FETCH_FAIL';
 
 
 export const login = (values) => (dispatch) => {
-    console.log('values is: ', values); 
+    const data = values; 
+   
     axiosWithAuth()
     .post('/auth/login/',values)
     .then( r => {
-        dispatch({type: LOGIN, payload: r.data.id})
+        console.log("Data", r.data)
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.id)
+        dispatch({type: LOGIN, payload:{username: values.username, id: r.data.id} })
     })
     .catch(error => error)
 }
@@ -58,17 +60,18 @@ const id = localStorage.getItem('id')
 export const updateUser = (values) => dispatch => {
     
     axiosWithAuth()
-    .put(`users/${id}`)
+    .put(`users/${id}`, values)
     .then( r => {
-        dispatch({type: UPDATE_USER, payload: values})
-        if (values.username !== '') {
+        dispatch({type: UPDATE_USER, payload: r.data})
+        console.log("updated: ", r.data)
+        
         localStorage.setItem('token', r.data.token)
-        }
+        
     })
     .catch(error => {console.log(error)})
 }
 
-export const deleteUser = id => dispatch => {
+export const deleteUser = () => dispatch => {
    
     axiosWithAuth()
     .delete(`users/${id}`)

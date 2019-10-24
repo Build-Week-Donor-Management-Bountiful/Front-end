@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux'; 
@@ -160,11 +160,11 @@ const FormikRegisterForm = withFormik({
     //axios POST request to backend
     //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
    props.signup(values)
-   props.history.push('/home')
+    props.history.push('/home')
 
   },
   
   
 })(RegisterForm); 
   
-export default connect(null, { signup })(FormikRegisterForm);
+export default withRouter(connect(null, { signup })(FormikRegisterForm));

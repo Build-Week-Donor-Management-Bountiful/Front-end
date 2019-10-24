@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     const donors = []; 
-    console.log(state)
+    
     return {
         username: state.username,
         campaigns: state.organization.campaigns,
@@ -27,10 +27,7 @@ const mapStateToProps = (state) => {
 
 const Home = props => {
         
-        useEffect(() => {
-            props.getUser()
-
-        }, [])
+      
 
         return (
              <div className="home">

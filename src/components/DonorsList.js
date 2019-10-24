@@ -22,10 +22,10 @@ const DonorsList = props => {
                 )
             }
         )
-        console.log(donor_array)
+       // console.log(donor_array)
     }
 
-    console.log(getAll())
+    getAll()
    // const donors_array=[{}];
    // console.log(props.campaigns.map(campaign => campaign.filter(i => i !== null)));
     return(

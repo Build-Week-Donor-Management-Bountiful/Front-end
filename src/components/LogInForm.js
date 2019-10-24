@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 
@@ -111,19 +111,22 @@ const FormikLogInForm = withFormik({
     password: Yup.string().required("Please input a password").min(3,"Min of 3 chars for the password"),
   }),
   
-  handleSubmit(values, { setStatus, resetForm, props}) {
+  handleSubmit(values, { props, setStatus, resetForm }) {
     resetForm();
-    // console.log("In the handleSubmit function and values is: ",values);
-    
-    setStatus(values);
 
-    //logs user in with the credentials entered using axios.post
-    props.login(values)
+    // console.log("In the handleSubmit function and values is: ",values);
+    setStatus(values);
+    console.log("props:", props)
+
+    //axios POST request to backend
+    //You will need to send an object that looks like this: { "username": Your username here, "password": Your password here }
+   props.login(values)
     props.history.push('/home')
-    
+
   },
+  
   
   
 })(LogInForm); 
   
-export default connect(null, { login })(FormikLogInForm)
+export default withRouter(connect(null, { login })(FormikLogInForm))
