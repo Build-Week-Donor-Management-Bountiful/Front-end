@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, ADD_DONOR, UPDATE_DONOR, FETCH_FAIL, CREATE_CAMPAIGN } from '../actions/index'; 
+import { LOGIN, SIGNUP, ADD_DONOR, UPDATE_DONOR, FETCH_FAIL, FETCH_SUCCESS, CREATE_CAMPAIGN, GET_USER, DELETE_USER, UPDATE_USER } from '../actions/index'; 
 
 
 const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
@@ -148,7 +148,31 @@ const reducer = (state = initial, action) => {
                 isFetching: false, 
                 error: action.payload
             }
-    
+        
+        case FETCH_SUCCESS: 
+             return {
+                 ...state, 
+                 isFetching: false
+             }
+        case GET_USER: 
+            return {
+                ...state, 
+                isFetching: true, 
+               credentials: {
+                    username: action.payload.username, 
+                    password: action.payload.password
+                }
+            }
+        
+        case DELETE_USER: 
+            return {
+                ...state, 
+                isFetching: true, 
+                credentials: {
+                    username: '', 
+                    password: ''
+                }
+            }
         default: 
             return state; 
     }

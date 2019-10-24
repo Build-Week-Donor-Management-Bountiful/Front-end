@@ -1,4 +1,4 @@
-
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 //login
 export const LOGIN = 'LOGIN'; 
@@ -8,9 +8,15 @@ export const SIGNUP = 'SIGNUP';
 export const ADD_DONOR = 'ADD_DONOR'; 
 //update communication
 export const UPDATE_DONOR = 'UPDATE_DONOR'; 
+
+export const UPDATE_USER = 'UPDATE_USER'; 
+
+export const DELETE_USER = 'DELETE_USER'; 
 //create campaign
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN'; 
 
+export const GET_USER = "GET_USER"; 
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL';
 
 
@@ -20,4 +26,27 @@ export const login = user => {
         type: LOGIN, 
         payload: user
     }
+}
+
+export const getUser = () => dispatch => {
+    
+
+    axiosWithAuth()
+    .get(`users/user`)
+    .then(r =>{console.log(r.data); dispatch({type: GET_USER, payload: r.data})})
+    .catch(error => { console.log(error); dispatch({ type: FETCH_FAIL, payload: error.response})}); 
+}
+
+export const updateUser = (user, id) => dispatch => {
+    axiosWithAuth()
+    .put(`users/${id}`)
+    .then( r => {dispatch({type: UPDATE_USER, payload: user})})
+    .catch(error => {console.log(error)})
+}
+
+export const deleteUser = id => dispatch => {
+    axiosWithAuth()
+    .delete(`users/${id}`)
+    .then( r => { console.log(r.data); dispatch({type: DELETE_USER})})
+    .catch(error => console.log(error))
 }
