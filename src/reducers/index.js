@@ -6,50 +6,109 @@ const mission_dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 
 const initial = {
     id: 0, 
-    credentials: {
-        username: '', 
-        password: ''
-    }, 
+    username:"", 
     isFetching: false, 
     error: " ",
-    organization: {
-        name: 'Wayne Enterprises', 
-        campaigns: [
+    organization:'Wayne Enterprises', 
+
+     donors: [ {
+            id: Math.random(), 
+            name: 'John Timoth',
+            email: 'ysoserious@any.net',
+            phone: '555-907-5955',
+            campaign: 'Feed The Homeless',
+            amount: 50, 
+            date: '10/12/19'
+        },
+        {
+            id: Math.random(), 
+            name: 'Apple Smith',
+            email: 'ApplePie978@anyd.net',
+            campaign: 'Feed The Homeless',
+            phone: '555-123-4555',
+            amount: 34, 
+            date: '10/12/19'
+        },
+
+        {
+            id: Math.random(), 
+            name: 'Tommy Bean',
+            email: 'ttbeansinc@any.net',
+            phone: '976-555-4525',
+            campaign: 'Feed The Homeless',
+            amount: 45, 
+            date: '10/12/19'
+        },
+    
+        {
+            id: Math.random(), 
+            name: 'Miley Cyrus',
+            email: 'hm@disdneyworld.net',
+            campaign: 'Feed The Homeless',
+            phone: '123-456-7890',
+            amount: 0.50, 
+            date: '10/12/19'
+        },
+        {
+            id: Math.random(), 
+            name: 'Mickey Mouse',
+            email: 'MickeyMouseClubHouse@disneyboss.com',
+            campaign:  "Repair Bat Signals Throughout Gotham" , 
+            phone: '678-453-555',
+            amount: 0.50, 
+            date: '10/12/19'
+        },
+
+        {
+            id: Math.random(), 
+            name: 'Miley Cyrus',
+            email: 'hm@disdneyworld.net',
+            campaign: "Help Build More Shelters", 
+            phone: '123-456-7890',
+            amount: 0.50, 
+            date: '10/12/19'
+        },
+        {
+            id: Math.random(), 
+            name: 'Mickey Mouse',
+            email: 'MickeyMouseClubHouse@disneyboss.com',
+            campaign: "Help Build More Shelters", 
+            phone:  "Repair Bat Signals Throughout Gotham" ,
+            amount: 0.50, 
+            date: '10/12/19'
+        },
+
+        {
+            id: Math.random(), 
+            name: 'Selina Kyle',
+            email: 'catsoverdogs123@femail.com',
+            campaign: "Help Build More Shelters", 
+            phone: '555-555-55',
+            amount: 20000, 
+            date: '1/05/19'
+        },
+
+        {
+            id: Math.random(), 
+            name: 'thomas matt',
+            email: 'kajfs@femail.com',
+            campaign: "Help Build More Shelters", 
+            phone: '555-555-55',
+            amount: 20000, 
+            date: '1/05/19'
+        }
+
+       
+    
+    //end of donor list
+    ],
+    campaigns: [
             {
                 id: 0, 
                 name: "Feed The Homeless" ,
                 img: "https://images.unsplash.com/photo-1518398046578-8cca57782e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
                 mission: mission_dummy, 
-                donors: [
-                    {
-                        id: 0, 
-                        name: 'John Timoth',
-                        email: 'ysoserious@any.net',
-                        phone: '555-907-5955',
-                        amount: 50, 
-                        date: '10/12/19'
-                    },
-                    {
-                        id: 1, 
-                        name: 'Apple Smith',
-                        email: 'ApplePie978@anyd.net',
-                        phone: '555-123-4555',
-                        amount: 34, 
-                        date: '10/12/19'
-                    },
-
-                    {
-                        id: 2, 
-                        name: 'Tommy Bean',
-                        email: 'ttbeansinc@any.net',
-                        phone: '976-555-4525',
-                        amount: 45, 
-                        date: '10/12/19'
-                    }
-
-                ],
-                goal: 50000,
-                raised: 1.50
+                goal: 50000
             },
 
             {
@@ -57,29 +116,7 @@ const initial = {
                 name: "Repair Bat Signals Throughout Gotham" ,
                 img: "https://i.pinimg.com/originals/64/4a/ed/644aed5700ef032be0a4e20ea39f9ef9.jpg",
                 mission: mission_dummy, 
-                donors: [
-                    {
-                        id: 0, 
-                        name: 'Two Faced',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
-                        amount: 0.50, 
-                        date: '10/12/19'
-                    },
-                    {
-                        id: 1, 
-                        name: 'Two Faced',
-                        email: 'ysoserious@any.net',
-                        phone: '555-555-555',
-                        amount: 0.50, 
-                        date: '10/12/19'
-                    }
-
-                   
-
-                ],
-                goal: 25000,
-                raised: 1
+                goal: 25000
             },
 
             {
@@ -87,22 +124,13 @@ const initial = {
                 name: "Help Build More Shelters" ,
                 img: "https://images.unsplash.com/photo-1543689604-755ae643637b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
                 mission: mission_dummy, 
-                donors: [
-                    {
-                        id:0, 
-                        name: 'Selina Kyle',
-                        email: 'catsoverdogs123@femail.com',
-                        phone: '555-555-55',
-                        amount: 20000, 
-                        date: '1/05/19'
-                    }
-                ],
-                goal: 75000,
-                raised: 20000 
+                goal: 75000
             }
+
+            //end of campaign list
         ]
 
-    }
+    
 }
 
 //reducer
@@ -115,26 +143,37 @@ const reducer = (state = initial, action) => {
                 ...state,  
                 isFetching: true, 
                 error: '...Logging In', 
-                credentials:{
-                    username: action.payload.username, 
-                    password: action.payload.password, 
-                },
+                username: action.payload.username,
+                id: action.payload.id,
                 
-                id: action.payload.id
             }
         case SIGNUP: 
             return {
                 ...state, 
                 isFetching: true, 
                 error: '...Creating Your Account', 
+                id: action.payload.id,
                 username: action.payload.username, 
-                password: action.payload.password, 
-                id: action.payload.id
+                    
+                
             }
         case ADD_DONOR: 
             return {
                 ...state, 
-                error: 'Adding Donor'
+               donors:[
+                  ...state.donors, 
+                  action.payload
+               ]
+                
+            }
+
+        case CREATE_CAMPAIGN: 
+            return {
+                ...state, 
+                campaigns: [
+                    ...state.campaigns, 
+                    action.payload
+                ]
             }
         case UPDATE_DONOR: 
             return {
@@ -158,20 +197,25 @@ const reducer = (state = initial, action) => {
             return {
                 ...state, 
                 isFetching: true, 
-               credentials: {
-                    username: action.payload.username, 
-                    password: action.payload.password
-                }
+                username: action.payload.username,
+                id: action.payload.id
+                
             }
         
         case DELETE_USER: 
             return {
                 ...state, 
                 isFetching: true, 
-                credentials: {
-                    username: '', 
-                    password: ''
-                }
+                username: '', 
+                
+            }
+        
+
+        case UPDATE_USER: 
+            return {
+                ...state, 
+                username: action.payload.username, 
+                password: action.payload.password
             }
         default: 
             return state; 

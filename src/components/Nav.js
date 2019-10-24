@@ -1,14 +1,14 @@
 import React from 'react'; 
-import { NavLink } from 'react-router-dom'; 
+import { NavLink, Link } from 'react-router-dom'; 
 
 
-const Nav = () => {
+const Nav = props => {
     return (
         <div className="nav">
             <h1>Bountiful</h1>
             <NavLink to="/home">Donors</NavLink>
             <NavLink to="/campaigns">Campaigns</NavLink>
-            <button className="logout">Logout</button>
+            <Link className="logout" to="/" onClick={() => localStorage.clear()}>Logout</Link>
         </div>
     )
 }

@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 */
 const DonorCard = props => 
 {
-    console.log(props)
+   
     return (
         <div className="donor">
             <h4>{props.name}</h4>

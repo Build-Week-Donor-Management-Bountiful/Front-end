@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'; 
 
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 //components
 import DonorsList from './DonorsList'
 import Nav from './Nav'; 
@@ -16,21 +16,20 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     const donors = []; 
-    console.log(state)
+    
     return {
-        username: state.credentials.username,
-        campaigns: state.organization.campaigns,
-        donors:state.organization.campaigns.map(campaign => donors.push(campaign.donors))
+        username: state.username,
+        campaigns: state.campaigns,
+        donors:state.donors
     }
 
 }
 
 const Home = props => {
-        
-        useEffect(() => {
-            props.getUser()
-
-        }, [])
+    useEffect( () => {
+        props.getUser()
+    },[props.donors]) 
+      
 
         return (
              <div className="home">
@@ -40,7 +39,7 @@ const Home = props => {
 
                 <div className="donor-filter">
             
-                   <button>+ new donor</button>
+                   <Link to='/adddonor'><button>+ new donor</button></Link>
                 
                 </div>
 

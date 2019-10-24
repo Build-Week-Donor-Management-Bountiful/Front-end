@@ -160,7 +160,7 @@ const EditDonorForm = (props) => {
             <p>
               Or back to Donor List
               <span> 
-                <StyledLink to='/' > here</StyledLink>
+                <StyledLink to='/home' > here</StyledLink>
               </span>
             </p>
           </RegisDiv>
