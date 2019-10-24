@@ -173,7 +173,7 @@ const AddDonorForm = (props) => {
           {/* This is for last communication method */}
           {/* <CommMeth  fieldName="commMeth" touched={touched.commMeth} errors={errors.commMeth} /> */}
 
-          <SubmitBtn textDisplay={"UpdateInformation"}/>
+          <SubmitBtn textDisplay={"AddDonor"}/>
           <RegisDiv>
             <p>
               Or back to Donor List

@@ -23,6 +23,7 @@ import LoginPage from './components/LogInForm';
 import RegisterPage from './components/RegisterPage'; 
 import EditDonorPage from './components/EditDonorPage'; 
 import EditCampaignPage from './components/EditCampaignPage'; 
+import AddCampaignPage from './components/AddCampaignPage'; 
 import UserSettingPage from './components/UserSettingPage'; 
 import Header from './components/Header'; 
 
@@ -65,9 +66,12 @@ function App() {
             {/* <Route path="/editDonor/:id" component={EditDonorPage}/>
             <Route path="/adddonor" component={AddDonorPage}/> */}
 
+<Route path="/editCampaign" component={EditCampaignPage}/>
+<Route path="/addCampaign" component={AddCampaignPage}/>
+
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
             <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
-            <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
+            {/* <PrivateRoute path="/editCampaign" component={EditCampaignPage}/> */}
             <PrivateRoute path="/userSetting" component={UserSettingPage}/>
             <PrivateRoute path="/adddonor" component={ (props) => <AddDonorPage {...props}/>}/>
             <PrivateRoute path='/home' component={Home}/>
