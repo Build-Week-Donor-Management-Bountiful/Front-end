@@ -26,7 +26,9 @@ const mapStateToProps = (state) => {
 }
 
 const Home = props => {
-        
+    useEffect( () => {
+        props.getUser()
+    },[props.state]) 
       
 
         return (
