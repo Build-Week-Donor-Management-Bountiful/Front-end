@@ -34,7 +34,7 @@ const CampaignDetails = props => {
     );
 }
 
-export default connect(mapStateToProps, { login })(CampaignDetails); 
+export default connect(mapStateToProps, { })(CampaignDetails); 
 
 
 
