@@ -60,7 +60,7 @@ const id = localStorage.getItem('id')
 export const updateUser = (values) => dispatch => {
     
     axiosWithAuth()
-    .put(`users/${id}`, values)
+    .put(`users/${id}`, {username: values.username, password: values.password})
     .then( r => {
         dispatch({type: UPDATE_USER, payload: r.data})
         console.log("updated: ", r.data)
@@ -75,6 +75,11 @@ export const deleteUser = () => dispatch => {
    
     axiosWithAuth()
     .delete(`users/${id}`)
-    .then( r => { console.log(r.data); dispatch({type: DELETE_USER})})
+    .then( r => { 
+        console.log(r.data); 
+        dispatch({type: DELETE_USER})
+        localStorage.clear()
+    
+    })
     .catch(error => console.log(error))
 }

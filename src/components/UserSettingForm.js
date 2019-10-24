@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Form, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
@@ -31,6 +31,7 @@ const UserSettingForm = ({values,errors,touched,status}) => {
   const [data, setData] = useState({});
   useEffect(() => {
     status && setData(status);
+    
   }, [status]);
 
   return (
@@ -48,8 +49,17 @@ const UserSettingForm = ({values,errors,touched,status}) => {
             touched={touched.password} errors={errors.password}
           />
           
-          <SubmitBtn textDisplay={"Delete"}/>
 
+          <label>
+            Delete my account: 
+            <Field
+              type="checkbox"
+              name="remove"
+              checked={values.remove}
+            />
+          </label>
+          <SubmitBtn textDisplay={"Submit"}/>
+          
           
           
         </StyledForm>
@@ -57,11 +67,11 @@ const UserSettingForm = ({values,errors,touched,status}) => {
       {/* </FormCtrDiv> */}
 
 
-      {/* The following code is for testing purposes only */}
-      {/* comment out in customer version of the code */}
+      {/* The following code is for testing purposes only 
+     
       <p>{`The user name is: ${data.username}`}</p>
       <p>{`The password is: ${data.password}`}</p>
-     
+     */}
 
     </>
 
@@ -74,10 +84,11 @@ const UserSettingForm = ({values,errors,touched,status}) => {
  
 const FormikUserSettingForm = withFormik({
   
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password, remove}) {
     return {
       username: username || "",
       password: password || "",
+      remove: remove || false 
       
     };
   },
@@ -86,8 +97,16 @@ const FormikUserSettingForm = withFormik({
   handleSubmit(values, { props, setStatus, resetForm}) {
     resetForm();
     setStatus(values);
-    props.updateUser(values)
-    props.history.push('/home')
+
+    if (values.remove){
+      props.deleteUser()
+      props.history.push('/')
+    } else{
+    
+      props.updateUser(values)
+      props.history.push('/home')
+
+    }
     
     
     
