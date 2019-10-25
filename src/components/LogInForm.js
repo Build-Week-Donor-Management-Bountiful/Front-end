@@ -9,11 +9,6 @@ import * as Yup from "yup";
 import { connect } from 'react-redux'; 
 import { login } from '../actions'
 
-import Header from './Header'
-
-
-//created so I can reuse base url and auth header
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import styled from "styled-components";
 
@@ -73,10 +68,10 @@ const LogInForm = ({ values,errors,touched,status }) => {
           />
           <SubmitBtn textDisplay={"LogIn"}/>
           <RegisDiv>
-            <p>
+            <p> <span> 
               Don't have an account?
-              <span> 
-                <StyledLink to='/register'>Sign up</StyledLink>
+             
+                <Link to="/register">Sign up</Link>
               </span>
             </p>
           </RegisDiv>
@@ -105,7 +100,7 @@ const LogInForm = ({ values,errors,touched,status }) => {
  
 const FormikLogInForm = withFormik({
   
-  mapPropsToValues({ username, password, login }) {
+  mapPropsToValues({ username, password }) {
     return {
       username: username || "",
       password: password || "",
@@ -134,4 +129,4 @@ const FormikLogInForm = withFormik({
   
 })(LogInForm); 
   
-export default withRouter(connect(null, { login })(FormikLogInForm))
+export default connect(null, { login })(withRouter(FormikLogInForm))

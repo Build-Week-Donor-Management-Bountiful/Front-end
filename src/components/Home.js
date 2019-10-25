@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import { Link, withRouter } from 'react-router-dom'
 //components
 import DonorsList from './DonorsList'
-import Header from './Header'
 
 
 import { getUser } from '../actions'
