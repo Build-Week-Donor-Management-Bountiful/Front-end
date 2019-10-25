@@ -26,13 +26,15 @@ const mapStateToProps = (state) => {
 
 const Home = props => {
       
-
+    useEffect(() => {
+        props.getUser()
+    }, [props.state])
         return (
              <div className="home">
                
-                <div className="home-header">
+                <div className="homeheader">
                     <h1>Welcome, {props.username}</h1>
-                   <Link to='/adddonor'>Add New Donor</Link>
+                   <Link className="add" to='/adddonor'>Add New Donor</Link>
                 </div>
                 
 

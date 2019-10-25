@@ -11,6 +11,7 @@ import {axiosWithAuth }from '../utils/axiosWithAuth'
 
 const mapStateToProps = state => {
     return {
+        organization:state.organization,
         campaigns: state.campaigns, 
         donors: state.donors
     }
@@ -32,9 +33,11 @@ const CampaignList = props => {
     return (
 
         <div className="campaign-list">
-            
-            <Link to={`/addCampaign`}>Add Campaign</Link>
-            <h2>Your Campaigns</h2>
+
+            <div className="homeheader">
+                <h2>{props.organization}'s Campaigns</h2>
+                <Link className="add" to={`/addCampaign`}>Add Campaign</Link>
+            </div>
             <div className="campaigns">
                 {props.campaigns.map( campaign => 
                     <CampaignCard 

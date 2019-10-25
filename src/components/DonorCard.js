@@ -10,9 +10,9 @@ const DonorCard = props =>
    
     return (
         <div className="donor">
-            <h4>{props.name}</h4>
-            <p>{props.date}</p>
-           <Link to={`donor/${props.id}`}><button className="details">Details</button></Link>
+            <h3>{props.name}</h3>
+            <p>Last Contacted on: {props.date}</p>
+           <Link className="details" to={`donor/${props.id}`}><button className="details">Details</button></Link>
         </div>
     )
 }

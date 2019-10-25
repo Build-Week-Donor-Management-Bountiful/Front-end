@@ -31,10 +31,10 @@ const RegisDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color:blue;
-  text-decoration:underline;
-  font-size:16px;
-  font-family: 'Muli', sans-serif;
+font-size: 1.2rem;
+text-decoration: none;
+margin: 0 0.5rem;
+color: #23293B;
 `;
 
 // const backendServerUp = true;

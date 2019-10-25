@@ -10,12 +10,12 @@ const initial = {
     isFetching: false, 
     error: " ",
     
-    organization:'Wayne Enterprises', 
+    organization:'The Giving Heart Shelter', 
 
      donors: [ {
             id: Math.random(), 
             name: 'John Timoth',
-            email: 'ysoserious@any.net',
+            email: 'johnnyt@comcast.net',
             phone: '555-907-5955',
             campaign: 'Feed The Homeless',
             amount: 50, 
@@ -114,10 +114,10 @@ const initial = {
 
             {
                 id: 1, 
-                name: "Repair Bat Signals Throughout Gotham" ,
-                img: "https://i.pinimg.com/originals/64/4a/ed/644aed5700ef032be0a4e20ea39f9ef9.jpg",
+                name: "Feed The World" ,
+                img: "https://images.unsplash.com/photo-1516676237310-04deffe44aac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
                 mission: mission_dummy, 
-                goal: 25000
+                goal: 100000
             },
 
             {
