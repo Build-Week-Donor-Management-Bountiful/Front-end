@@ -4,7 +4,7 @@ This is front end portion for the Bountiful react app. The purpose of Bountiful 
 
 
 
-##Libraries/Frameworks Used: 
+## Libraries/Frameworks Used: 
 State management: 
 React router dom
 Redux
@@ -18,7 +18,7 @@ For styling:
 Styled-components
 
 
-##Features
+### Features
 Users has the ability to:
 -keep track of donors for different campaigns 
 -see a list of all donors on the first page after logging in
