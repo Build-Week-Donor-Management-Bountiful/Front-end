@@ -40,10 +40,10 @@ const CancelDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color:blue;
-  text-decoration:underline;
-  font-size:16px;
-  font-family: 'Muli', sans-serif;
+color:blue;
+text-decoration:underline;
+font-size:16px;
+font-family: 'Muli', sans-serif;
 `;
 
 /*******************End of Styled Components*******************/
@@ -94,13 +94,13 @@ const RegisterForm = ({values,errors,touched,status}) => {
             touched={touched.password} errors={errors.password}
           />    
           
-          <button>Register</button>
+          <SubmitBtn textDisplay={"SignUp"}/>
           <CancelDiv>
             <p>
               <span>
               Already have an account?
                
-              <StyledLink to='/'>login</StyledLink>
+              <Link to='/'>login</Link>
               </span>
             </p>
           </CancelDiv>
