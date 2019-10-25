@@ -6,11 +6,12 @@ const CampaignCard = props => {
         <div className='campaign' key={props.id}>
             <img className="campaign-img" src={props.img} alt={`${props.name}'s campaign`} />
             <h3>{props.name}</h3>
-            <p>{props.mission}</p>
-            <p>Funding Goal: {props.goal}</p>
-            <p>Money Rasied: {props.raised}</p>
+            <div className="summary">
+                <p>{props.mission}</p>
+                <p className="goal"><b>Funding Goal:</b> {props.goal}</p>
+            </div>
 
-            <Link to={`campaign/${props.id}`}><button >More Details</button></Link>
+            <Link className="details" to={`campaign/${props.id}`}><button >More Details</button></Link>
 
 
         </div>

@@ -59,18 +59,14 @@ function App() {
         <Router>
           <Header/>
           <Switch>
-            
-            <Route path="/" component={LoginPage}/>
+            <Route exact path="/" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
 
             {/* <Route path="/editDonor/:id" component={EditDonorPage}/>
             <Route path="/adddonor" component={AddDonorPage}/> */}
 
-
-
-
-            <PrivateRoute path="/editCampaign" component={EditCampaignPage}/>
-            <PrivateRoute path="/addCampaign" component={AddCampaignPage}/>
+            <Route path="/editCampaign" component={EditCampaignPage}/>
+            <Route path="/addCampaign" component={AddCampaignPage}/>
 
             {/* <PrivateRoute path="/adddonor" component={AddDonorPage}/> */}
             <PrivateRoute path="/editDonor/:id" component={EditDonorPage}/>
@@ -80,11 +76,11 @@ function App() {
             <PrivateRoute path='/home' component={Home}/>
 
 
-            <PrivateRoute path='/campaigns' component={CampaignList}/>
-            <PrivateRoute path='/campaign/:id' component={CampaignDetails}/>
+            <Route path='/campaigns' component={CampaignList}/>
+            <Route path='/campaign/:id' component={CampaignDetails}/>
 
-            <PrivateRoute path='/donors' component={DonorsList}/>
-            <PrivateRoute path='/donor/:id' component={DonorDetails} />
+            <Route path='/donors' component={DonorsList}/>
+            <Route path='/donor/:id' component={DonorDetails} />
             
           </Switch>
         </Router>

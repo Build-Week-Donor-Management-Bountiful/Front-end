@@ -46,8 +46,10 @@ export const login = (values, history) => (dispatch) => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.id)
         dispatch({type: LOGIN, payload:{username: values.username, id: r.data.id} })
-        history.push('/home')
         
+        
+    }).then(r => {
+        history.push('/home');
     })
     .catch(error => error)
 }
@@ -60,10 +62,13 @@ export const signup = (values, history) => dispatch => {
         localStorage.setItem('token', r.data.token)
         localStorage.setItem('id', r.data.user.id)
         dispatch({type: SIGNUP, payload: r.data.user })
-        history.push('/home')
         
       }
-    ).catch(
+    ).then(r =>{
+        history.push('/home')
+
+    })
+    .catch(
       error => console.log(error.data)
     )
      

@@ -94,11 +94,12 @@ const RegisterForm = ({values,errors,touched,status}) => {
             touched={touched.password} errors={errors.password}
           />    
           
-          <SubmitBtn textDisplay={"Register"}/>
+          <button>Register</button>
           <CancelDiv>
             <p>
+              <span>
               Already have an account?
-              <span> 
+               
               <StyledLink to='/'>login</StyledLink>
               </span>
             </p>
@@ -106,6 +107,9 @@ const RegisterForm = ({values,errors,touched,status}) => {
         </Form>
         
       </FormCtrDiv>
+
+
+
 
       {/* The following code is for testing purposes only */}
       {/* comment out in customer version of the code 
@@ -166,4 +170,4 @@ const FormikRegisterForm = withFormik({
   
 })(RegisterForm); 
   
-export default withRouter(connect(null, { signup })(FormikRegisterForm));
+export default connect(null, { signup })(withRouter(FormikRegisterForm));

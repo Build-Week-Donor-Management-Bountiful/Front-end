@@ -15,7 +15,7 @@ const DonorsList = props => {
    // const donors_array=[{}];
    // console.log(props.campaigns.map(campaign => campaign.filter(i => i !== null)));
     return(
-        <div className="donors, list">
+        <div className="donors">
         {props.donors.map(donor => <DonorCard name={donor.name} date={donor.date} id={donor.id}/>)}
     </div>
     )
