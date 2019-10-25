@@ -9,6 +9,7 @@ const initial = {
     username:"", 
     isFetching: false, 
     error: " ",
+    
     organization:'Wayne Enterprises', 
 
      donors: [ {

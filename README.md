@@ -6,13 +6,13 @@ This is front end portion for the Bountiful react app. The purpose of Bountiful 
 
 ## Libraries/Frameworks Used: 
 ### State management: 
-React router dom
-Redux
-React redux
+- React router dom
+- Redux
+- React redux
 
 ### Form management/valildation: 
-Formik 
-Yup
+- Formik 
+- Yup
 
 ### Styling: 
 Styled-components

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import Nav from './Nav'
 
 const StyledDivBox = styled.div`
   background-color:#FFE1E1;
@@ -41,9 +42,7 @@ export default function Header() {
     <StyledDivBox>
       <StyledHdr >
         <StyledH1>Bountiful</StyledH1>
-        <nav>
-          <StyledA href="https://stoic-northcutt-5bdaa5.netlify.com">Home</StyledA>
-        </nav>     
+        <Nav/>     
       </StyledHdr>
     </StyledDivBox>
 

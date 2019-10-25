@@ -3,7 +3,8 @@ import React, {useEffect} from 'react';
 import { Link, withRouter } from 'react-router-dom'
 //components
 import DonorsList from './DonorsList'
-import Nav from './Nav'; 
+import Header from './Header'
+
 
 import { getUser } from '../actions'
 import { connect } from 'react-redux'; 
@@ -14,8 +15,7 @@ import { connect } from 'react-redux';
 
 
 
-const mapStateToProps = (state) => {
-    const donors = []; 
+const mapStateToProps = (state) => { 
     
     return {
         username: state.username,
@@ -26,22 +26,16 @@ const mapStateToProps = (state) => {
 }
 
 const Home = props => {
-    useEffect( () => {
-        props.getUser()
-    },[props.donors]) 
       
 
         return (
              <div className="home">
-                 <Nav/>
-                
-                <h1>Welcome, {props.username}</h1>
-
-                <div className="donor-filter">
-            
-                   <Link to='/adddonor'><button>+ new donor</button></Link>
-                
+               
+                <div className="home-header">
+                    <h1>Welcome, {props.username}</h1>
+                   <Link to='/adddonor'>Add New Donor</Link>
                 </div>
+                
 
                 <DonorsList/>
             </div>
@@ -50,5 +44,7 @@ const Home = props => {
    
     
 }
+
+
 
 export default connect(mapStateToProps,{ getUser })(Home); 

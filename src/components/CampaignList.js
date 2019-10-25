@@ -32,7 +32,7 @@ const CampaignList = props => {
     return (
 
         <div className="campaign-list">
-            <Nav/>
+            
             <Link to={`/addCampaign`}>Add Campaign</Link>
             <h2>Your Campaigns</h2>
             <div className="campaigns">

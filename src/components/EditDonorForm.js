@@ -13,6 +13,8 @@ import sunnyIcon from '../images/sunny.png';
 import TextIn from './TextIn';
 import SubmitBtn from './SubmitBtn';
 import DateSet from './DateSet';
+import Header from './Header'
+
 // import CommMeth from './CommMeth';
 
 const FormCtrDiv = styled.div`
@@ -121,7 +123,7 @@ const EditDonorForm = (props) => {
 
   return (
     <>
-
+      
       <h1>This is EditDonorForm</h1>
 
       <FormCtrDiv>
