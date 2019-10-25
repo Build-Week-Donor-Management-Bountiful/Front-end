@@ -56,7 +56,11 @@ const StyledLink = styled(Link)`
 // }
 
 
-
+const mapStateToProps = state => {
+    return{
+      donors: state.donors
+    }
+}
 
 const AddDonorForm = (props) => {
   const {values,errors,touched,status,setFieldValue,setFieldTouched} = props;
@@ -233,4 +237,4 @@ const FormikAddDonorForm = withFormik({
   
 })(AddDonorForm); 
   
-export default connect(null, { addDonor })(FormikAddDonorForm);
+export default connect(mapStateToProps, { addDonor })(FormikAddDonorForm);
