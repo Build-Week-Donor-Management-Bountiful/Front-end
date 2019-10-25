@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -42,6 +43,13 @@ img{
   margin: .5%; 
 }
 
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  color: #23293B;
+}
+
 .campaign-img{
   height: 250px; 
 }
@@ -52,3 +60,27 @@ img{
   
 }
 
+button{
+  text-decoration: none;
+  background-color: #8B0000;
+  color:#FFA07A;
+  border: 1px solid
+#23293B;
+  padding: 1% .5%;
+  border-radius: 5px; 
+}
+
+button:hover{
+  background-color:
+#FFA07A;
+color:
+#8B0000;
+border: 1px solid
+#23293B;
+}
+
+.home-header{
+  display: wrap;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+}

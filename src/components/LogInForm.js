@@ -9,6 +9,9 @@ import * as Yup from "yup";
 import { connect } from 'react-redux'; 
 import { login } from '../actions'
 
+import Header from './Header'
+
+
 //created so I can reuse base url and auth header
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
@@ -55,6 +58,7 @@ const LogInForm = ({ values,errors,touched,status }) => {
 
   return (
     <>
+
       <FormCtrDiv>
         <Form>
           <TextIn 
@@ -70,9 +74,9 @@ const LogInForm = ({ values,errors,touched,status }) => {
           <SubmitBtn textDisplay={"LogIn"}/>
           <RegisDiv>
             <p>
-              Or register
+              Don't have an account?
               <span> 
-                <StyledLink to='/register' > here</StyledLink>
+                <StyledLink to='/register'>Sign up</StyledLink>
               </span>
             </p>
           </RegisDiv>

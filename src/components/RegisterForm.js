@@ -97,9 +97,9 @@ const RegisterForm = ({values,errors,touched,status}) => {
           <SubmitBtn textDisplay={"Register"}/>
           <CancelDiv>
             <p>
-              Or go back to LogIn page
+              Already have an account?
               <span> 
-              <StyledLink to='/' > here</StyledLink>
+              <StyledLink to='/'>login</StyledLink>
               </span>
             </p>
           </CancelDiv>
